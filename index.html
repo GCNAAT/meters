@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>天津粤海天河城购物中心 · 商户水表计量数确认</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -19,6 +19,8 @@ html{-webkit-text-size-adjust:100%}
 body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 button{font-family:inherit;cursor:pointer;border:none;outline:none}
 input,select{font-family:inherit;outline:none}
+button,input,select,label{-webkit-tap-highlight-color:transparent}
+button,.btn,.tab,.upload-zone,.btn-ghost,.modal-close,.card-title,.search-row{touch-action:manipulation}
 
 /* ===== Header ===== */
 header{background:linear-gradient(135deg,#163d6b 0%,#1d4e89 55%,#2a6cb8 100%);color:#fff;padding:14px 18px;box-shadow:0 2px 14px rgba(22,61,107,.35);position:sticky;top:0;z-index:50}
@@ -192,23 +194,49 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
 .empty-state{text-align:center;padding:36px 16px;color:var(--text-3)}
 .empty-state .big{font-size:40px;margin-bottom:10px;opacity:.5}
 @media(max-width:520px){
+  header{padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
+  .logo{width:38px;height:38px;border-radius:9px}
   .brand h1{font-size:15px}
   .brand p{font-size:11px}
-  .card{padding:16px}
+  .header-actions{gap:8px}
+  .btn-ghost{padding:8px 12px;font-size:12.5px}
+  .mode-tag{display:none}
+  main{padding:14px 14px calc(84px + env(safe-area-inset-bottom))}
+  .card{padding:16px;border-radius:14px}
+  .card-title{font-size:15px}
+  .btn{min-height:46px;padding:12px 18px;font-size:15px}
+  .btn-sm{min-height:40px;padding:9px 14px;font-size:13px}
+  .input{font-size:16px;padding:13px 14px}
+  .search-row .btn{min-height:50px;padding:0 24px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -14px 14px;border-radius:0;padding:8px 14px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;padding:10px 16px;font-size:14px;min-height:42px}
+  .toolbar-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .toolbar-grid .btn-sm{width:100%}
+  .toolbar-grid .spacer{display:none}
+  .sig-tools{position:sticky;bottom:calc(8px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(255,255,255,0),#fff 32%);padding:14px 0 6px;z-index:5;margin-top:14px}
+  .sig-tools .btn{min-height:48px;font-size:16px}
+  #toast-wrap{top:calc(64px + env(safe-area-inset-top))}
+  .period-bar{padding:10px 12px}
+  .period-bar .input{padding:7px 10px;font-size:14px}
+  .shop-head .name{font-size:18px}
   .qr-canvas-box canvas{width:180px;height:180px}
   table.grid{font-size:12px}
   table.grid th,table.grid td{padding:8px 6px}
-  .toolbar{gap:8px}
-  .toolbar .btn-sm{padding:7px 10px;font-size:12.5px}
   .search-row{flex-wrap:nowrap}
   .search-row .input{min-width:0}
-  .sig-tools{flex-wrap:wrap}
   .modal-body,.modal-head,.modal-foot{padding-left:14px;padding-right:14px}
-  .period-bar{gap:8px}
-  .period-bar .input{padding:7px 10px;font-size:14px}
-  .shop-head .name{font-size:18px}
-  .tabs{gap:4px;padding:6px}
-  .tab{padding:8px 12px;font-size:13px}
+  .upload-zone{padding:18px 14px}
+  .upload-zone .big{font-size:14px}
+  .help-list{font-size:13px}
+  .sig-box{border-radius:12px}
+}
+@media(max-width:380px){
+  .brand p{display:none}
+  .header-actions .btn-ghost{padding:7px 10px;font-size:12px}
+  .toolbar-grid{grid-template-columns:1fr}
+  .card{padding:14px}
+  .shop-head .name{font-size:17px}
 }
 </style>
 </head>
@@ -340,7 +368,7 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           <div class="small">表头：序号, 月份, 商铺号, 商铺名称, 水表井编号, 水表规格(DN), 上月读数(m³), 上月用量(吨), 本月读数(m³), 用量(吨), 单价(元), 金额(元)<br>「序号」「客户签字」列自动忽略；楼层按铺位号自动识别（如 L8-001 → 8F、B1-301 → B1），也可增加「楼层」列指定；<b>「月份」列</b>（如 2026-09）指定数据所属账期，未填时导入当前选择的账期</div>
           <input type="file" id="csvInput" accept=".csv,text/csv">
         </div>
-        <div class="toolbar" style="margin-top:14px">
+        <div class="toolbar toolbar-grid" style="margin-top:14px">
           <button class="btn btn-outline btn-sm" id="templateBtn">下载CSV模板</button>
           <button class="btn btn-outline btn-sm" id="exportDataBtn">导出数据文件(meter-data.json)</button>
           <button class="btn btn-outline btn-sm" id="importDataBtn">导入数据文件(CSV/JSON)</button>
