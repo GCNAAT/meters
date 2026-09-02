@@ -2117,6 +2117,18 @@ function bindEvents(){
   document.getElementById('saveSettingBtn').onclick=saveSettingsForm;
 }
 
+/* ================= 商户入口 GET 参数 ================= */
+function applyMerchantParams(){
+  var url=new URLSearchParams(location.search);
+  var shop=norm(url.get('shop'));
+  var period=normPeriodKey(url.get('period'));
+  if(period)state.mPeriod=period;
+  if(shop){
+    document.getElementById('shopInput').value=shop;
+    queryShop();
+  }
+}
+
 /* ================= 初始化 ================= */
 function init(){
   initSignaturePad();
@@ -2135,6 +2147,7 @@ function init(){
     ensureMerchantData().then(function(ok){
       updateMerchantNotice(ok);
       if(!ok&&getRecords().length){updateMerchantNotice(true)}
+      applyMerchantParams();
     });
   }
 }
