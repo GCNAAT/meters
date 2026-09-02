@@ -471,14 +471,10 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           </div>
           <div class="qr-right">
             <div class="field">
-              <label>页面访问地址（GitHub Pages 部署后的 URL）</label>
-              <input class="input" id="qrUrlInput" placeholder="https://用户名.github.io/仓库名/">
-            </div>
-            <div class="field">
               <label>商铺号（可选，生成该商铺专属二维码）</label>
               <input class="input" id="qrShopInput" placeholder="如 L8-001，留空则生成通用入口二维码">
             </div>
-            <div class="text-muted" style="margin-bottom:14px">填写商铺号后，二维码地址自动带上 <code>?shop=商铺号</code>，商户扫码后直接进入该商铺数据；留空则生成通用入口二维码。</div>
+            <div class="text-muted" style="margin-bottom:14px">二维码指向 <code>https://gcnaat.github.io/meters/</code>；填写商铺号后自动带上 <code>?shop=商铺号</code>，商户扫码后直接进入该商铺数据；留空则生成通用入口二维码。</div>
             <button class="btn btn-primary" id="qrGenBtn">生成二维码</button>
             <div class="notice" style="margin-top:14px">商户扫码打开页面后，系统会自动加载同目录下的 <code>meter-data.json</code> 数据文件。请在「数据管理」中导入 CSV 后点击「导出数据文件」，将生成的 <code>meter-data.json</code> 与页面一起部署。</div>
           </div>
@@ -1961,12 +1957,11 @@ function buildPDF(floorNames,floors,sigs,imgCache,settings,intSigs,selFloor,peri
 }
 
 /* ================= 二维码 ================= */
+var DEFAULT_PUBLIC_URL='https://gcnaat.github.io/meters/';
 function buildQRUrl(){
-  var base=norm(document.getElementById('qrUrlInput').value);
   var shop=norm(document.getElementById('qrShopInput').value);
-  if(!base)return '';
-  if(shop)return base+(base.indexOf('?')>=0?'&':'?')+'shop='+encodeURIComponent(shop);
-  return base;
+  if(shop)return DEFAULT_PUBLIC_URL+(DEFAULT_PUBLIC_URL.indexOf('?')>=0?'&':'?')+'shop='+encodeURIComponent(shop);
+  return DEFAULT_PUBLIC_URL;
 }
 function renderQR(url){
   var box=document.getElementById('qrBox');
@@ -2128,7 +2123,7 @@ function bindEvents(){
   document.getElementById('qrGenBtn').onclick=generateQR;
   document.getElementById('qrDownloadBtn').onclick=downloadQR;
   document.getElementById('qrShopInput').addEventListener('input',function(){
-    if(window.QRCode&&document.getElementById('qrUrlInput').value)generateQR();
+    if(window.QRCode)generateQR();
   });
   document.getElementById('saveSettingBtn').onclick=saveSettingsForm;
 }
@@ -2151,11 +2146,7 @@ function init(){
   initInternalPads();
   loadSettingsForm();
   bindEvents();
-  var qrInput=document.getElementById('qrUrlInput');
-  var publicUrl='https://gcnaat.github.io/meters/';
-  if(location.hostname==='gcnaat.github.io'&&location.pathname.indexOf('/meters')===0){publicUrl=location.origin+location.pathname}
-  qrInput.value=publicUrl;
-  if(window.QRCode)renderQR(publicUrl);
+  if(window.QRCode)renderQR(DEFAULT_PUBLIC_URL);
   var url=new URLSearchParams(location.search);
   if(url.get('admin')==='1'||url.get('admin')==='true'){tryEnterAdmin()}
   else{
