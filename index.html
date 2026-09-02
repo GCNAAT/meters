@@ -1956,13 +1956,16 @@ function buildPDF(floorNames,floors,sigs,imgCache,settings,intSigs,selFloor,peri
 }
 
 /* ================= 二维码 ================= */
+function renderQR(url){
+  var box=document.getElementById('qrBox');
+  box.innerHTML='';
+  new QRCode(box,{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M});
+}
 function generateQR(){
   var url=norm(document.getElementById('qrUrlInput').value);
   if(!url){toast('请输入页面访问地址','warn');return}
   if(!window.QRCode){toast('二维码组件加载失败，请检查网络','error');return}
-  var box=document.getElementById('qrBox');
-  box.innerHTML='';
-  new QRCode(box,{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M});
+  renderQR(url);
   toast('二维码已生成','success');
 }
 
@@ -2120,7 +2123,11 @@ function init(){
   initInternalPads();
   loadSettingsForm();
   bindEvents();
-  if(location.protocol==='http:'||location.protocol==='https:'){document.getElementById('qrUrlInput').value=location.origin+location.pathname}
+  var qrInput=document.getElementById('qrUrlInput');
+  var publicUrl='https://gcnaat.github.io/meters/';
+  if(location.hostname==='gcnaat.github.io'&&location.pathname.indexOf('/meters')===0){publicUrl=location.origin+location.pathname}
+  qrInput.value=publicUrl;
+  if(window.QRCode)renderQR(publicUrl);
   var url=new URLSearchParams(location.search);
   if(url.get('admin')==='1'||url.get('admin')==='true'){tryEnterAdmin()}
   else{
