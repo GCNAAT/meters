@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>天津粤海天河城购物中心 · 商户水表计量数确认</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#1d4e89;--primary-2:#2a6cb8;--primary-dark:#163d6b;
+  --accent:#2e7d32;--accent-bg:#e8f5e9;
+  --danger:#c62828;--danger-bg:#fdecea;
+  --warn:#b26a00;--warn-bg:#fff8e1;
+  --bg:#eef2f7;--card:#fff;--text:#1f2937;--text-2:#5b6472;--text-3:#9aa3af;
+  --border:#e3e8ef;--radius:12px;
+  --shadow:0 2px 10px rgba(20,40,80,.08);
+}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+input,select{font-family:inherit;outline:none}
+
+/* ===== Header ===== */
+header{background:linear-gradient(135deg,#163d6b 0%,#1d4e89 55%,#2a6cb8 100%);color:#fff;padding:14px 18px;box-shadow:0 2px 14px rgba(22,61,107,.35);position:sticky;top:0;z-index:50}
+.header-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex:none}
+.brand h1{font-size:18px;font-weight:700;letter-spacing:.5px;line-height:1.3}
+.brand p{font-size:12px;opacity:.85;margin-top:2px}
+.header-actions{display:flex;align-items:center;gap:10px}
+.mode-tag{font-size:12px;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:20px}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;padding:8px 16px;border-radius:8px;font-size:13px;transition:.2s}
+.btn-ghost:hover{background:rgba(255,255,255,.26)}
+
+/* ===== Layout ===== */
+main{max-width:1080px;margin:20px auto;padding:0 16px 70px}
+.hidden{display:none!important}
+.view{animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ===== Cards ===== */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:16px}
+.card-title{font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card-title .bar{width:4px;height:16px;background:var(--primary-2);border-radius:2px}
+.card-title .sub{font-size:12px;font-weight:400;color:var(--text-3);margin-left:auto}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 20px;border-radius:8px;font-size:14px;font-weight:600;transition:.2s;border:1px solid transparent}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#256a29}
+.btn-outline{background:#fff;color:var(--primary);border-color:var(--primary);}
+.btn-outline:hover{background:#eef4fb}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-danger:hover{background:#a51f1f}
+.btn-gray{background:#eef1f5;color:var(--text-2)}
+.btn-gray:hover{background:#e2e7ee}
+.btn-sm{padding:7px 14px;font-size:13px;border-radius:7px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+
+/* ===== Inputs ===== */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;color:var(--text-2);margin-bottom:6px;font-weight:600}
+.input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;background:#fff;transition:.2s}
+.input:focus{border-color:var(--primary-2);box-shadow:0 0 0 3px rgba(42,108,184,.12)}
+.input::placeholder{color:#b6c2d2}
+.search-row{display:flex;gap:10px}
+.search-row .input{flex:1}
+
+/* ===== Merchant ===== */
+.merchant-wrap{max-width:640px;margin:0 auto}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--primary);color:#fff;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-right:8px;flex:none}
+.step-title{font-weight:700;color:var(--primary-dark);display:flex;align-items:center;font-size:15px}
+
+.shop-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed var(--border)}
+.shop-head .name{font-size:20px;font-weight:800;color:var(--primary-dark)}
+.shop-head .shop-sub{font-size:13px;color:var(--text-2);margin-top:3px}
+.shop-head .floor{font-size:13px;color:var(--text-2);background:#eef4fb;padding:4px 10px;border-radius:20px;flex:none}
+.meter-note{font-size:12.5px;color:var(--text-2);margin-bottom:8px}
+
+.sig-box{position:relative;border:1px dashed #b8c4d4;border-radius:10px;background:#fff;overflow:hidden;touch-action:none}
+.sig-box canvas{display:block;width:100%;height:auto}
+.sig-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#b6c2d2;font-size:14px;pointer-events:none;letter-spacing:2px}
+.sig-box.has-sig .sig-hint{display:none}
+.sig-tools{display:flex;gap:10px;margin-top:12px}
+.sig-tools .btn{flex:1}
+.int-sig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:14px}
+.int-sig-role{font-weight:700;color:var(--primary-dark);margin-bottom:8px;font-size:14px}
+.int-signed{display:none;text-align:center}
+.int-sig-item.signed .sig-box,.int-sig-item.signed .sig-tools{display:none}
+.int-sig-item.signed .int-signed{display:block}
+.int-signed .sig-preview{margin:0 auto 10px}
+.int-time{font-size:12px;color:var(--text-2);margin-bottom:10px}
+
+.notice{background:var(--warn-bg);border:1px solid #f0d9a8;color:var(--warn);padding:12px 14px;border-radius:10px;font-size:13px;line-height:1.7;margin-bottom:14px}
+.notice.success{background:var(--accent-bg);border-color:#b7dfba;color:var(--accent)}
+.notice.error{background:var(--danger-bg);border-color:#f3c1bd;color:var(--danger)}
+
+.signed-card{text-align:center;padding:26px 20px}
+.signed-icon{width:56px;height:56px;border-radius:50%;background:var(--accent-bg);color:var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:26px;font-weight:800}
+.signed-card h3{font-size:18px;color:var(--accent);margin-bottom:6px}
+.signed-card p{font-size:13px;color:var(--text-2);margin-bottom:18px}
+.sig-preview{max-width:220px;margin:0 auto 16px;border:1px solid var(--border);border-radius:8px;padding:6px;background:#fff}
+.sig-preview img{display:block;width:100%}
+
+/* ===== Admin ===== */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:8px}
+.tab{padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600;color:var(--text-2);background:transparent;transition:.2s}
+.tab:hover{background:#f0f4fa;color:var(--primary)}
+.tab.active{background:var(--primary);color:#fff}
+.tab .cnt{font-size:11px;background:rgba(255,255,255,.25);border-radius:10px;padding:1px 7px;margin-left:4px}
+.tab:not(.active) .cnt{background:#eef1f5;color:var(--text-2)}
+
+.upload-zone{border:2px dashed #c3cfdd;border-radius:12px;padding:26px;text-align:center;color:var(--text-2);background:#fafcfe;transition:.2s;cursor:pointer}
+.upload-zone:hover{border-color:var(--primary-2);background:#f2f7fd}
+.upload-zone .big{font-size:15px;font-weight:600;color:var(--primary-dark);margin-bottom:4px}
+.upload-zone .small{font-size:12px;color:var(--text-3);line-height:1.7}
+.upload-zone input[type=file]{display:none}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.toolbar .spacer{flex:1}
+
+table.grid{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+table.grid th{background:var(--primary);color:#fff;padding:10px 8px;font-weight:600;text-align:center;font-size:12.5px;white-space:nowrap}
+table.grid td{padding:9px 8px;text-align:center;border-bottom:1px solid var(--border);white-space:nowrap}
+table.grid tr:last-child td{border-bottom:none}
+table.grid tbody tr:hover{background:#f7fafd}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.badge.ok{background:var(--accent-bg);color:var(--accent)}
+.badge.no{background:#f1f3f6;color:var(--text-3)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+.table-scroll{overflow-x:auto;border-radius:10px}
+.summary-line{font-size:13px;color:var(--text-2);margin-bottom:12px}
+.summary-line b{color:var(--primary-dark)}
+
+.floor-block{margin-bottom:14px}
+.floor-block .floor-title{font-size:14px;font-weight:700;color:var(--primary-dark);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.floor-block .floor-title .tag{font-size:11px;color:var(--text-3);font-weight:400}
+
+/* ===== 账期栏 ===== */
+.period-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;margin-bottom:14px}
+.period-bar .period-label{font-weight:700;color:var(--primary-dark);font-size:14px}
+
+/* ===== 历史账期 ===== */
+.hist-block{border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:12px;background:#fafbfd}
+.hist-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.hist-head .t{font-weight:700;color:var(--primary-dark);font-size:14px}
+.hist-sig{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:var(--text-2)}
+.hist-sig img{height:34px;border:1px solid var(--border);border-radius:6px;padding:2px 6px;background:#fff}
+
+.qr-box{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.qr-canvas-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;box-shadow:var(--shadow)}
+.qr-canvas-box img,.qr-canvas-box canvas{display:block;width:220px;height:220px;max-width:100%}
+.qr-canvas-box .qr-tip{font-size:12px;color:var(--text-3);margin-top:8px}
+.qr-right{flex:1;min-width:260px}
+
+/* ===== Modal ===== */
+.modal-mask{position:fixed;inset:0;background:rgba(15,30,50,.5);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+.modal{background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.25);animation:pop .2s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.modal-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-head h3{font-size:16px;color:var(--primary-dark)}
+.modal-close{background:#f1f3f6;width:30px;height:30px;border-radius:8px;font-size:16px;color:var(--text-2);display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:#e2e7ee}
+.modal-body{padding:20px}
+.modal-foot{padding:14px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px}
+
+/* ===== Toast ===== */
+#toast-wrap{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{background:#1f2937;color:#fff;padding:11px 20px;border-radius:10px;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.2);animation:toastIn .25s ease;max-width:90vw}
+.toast.success{background:var(--accent)}
+.toast.error{background:var(--danger)}
+.toast.warn{background:var(--warn)}
+@keyframes toastIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+
+/* ===== Help ===== */
+.help-list{font-size:13.5px;line-height:1.9;color:var(--text)}
+.help-list b{color:var(--primary-dark)}
+.help-list .step{margin-bottom:12px}
+.help-list .step .t{font-weight:700;color:var(--primary-dark);margin-bottom:2px}
+.help-list code{background:#f1f4f8;padding:1px 6px;border-radius:4px;font-size:12px;color:var(--primary)}
+
+/* ===== Misc ===== */
+.divider{height:1px;background:var(--border);margin:16px 0}
+.text-center{text-align:center}
+.text-muted{color:var(--text-3);font-size:12px}
+footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
+.pin-input{text-align:center;font-size:22px;letter-spacing:8px;font-weight:700}
+.empty-state{text-align:center;padding:36px 16px;color:var(--text-3)}
+.empty-state .big{font-size:40px;margin-bottom:10px;opacity:.5}
+@media(max-width:520px){
+  .brand h1{font-size:15px}
+  .brand p{font-size:11px}
+  .card{padding:16px}
+  .qr-canvas-box canvas{width:180px;height:180px}
+  table.grid{font-size:12px}
+  table.grid th,table.grid td{padding:8px 6px}
+  .toolbar{gap:8px}
+  .toolbar .btn-sm{padding:7px 10px;font-size:12.5px}
+  .search-row{flex-wrap:nowrap}
+  .search-row .input{min-width:0}
+  .sig-tools{flex-wrap:wrap}
+  .modal-body,.modal-head,.modal-foot{padding-left:14px;padding-right:14px}
+  .period-bar{gap:8px}
+  .period-bar .input{padding:7px 10px;font-size:14px}
+  .shop-head .name{font-size:18px}
+  .tabs{gap:4px;padding:6px}
+  .tab{padding:8px 12px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2.5c3.6 4.4 6.5 8 6.5 11.6a6.5 6.5 0 1 1-13 0C5.5 10.5 8.4 6.9 12 2.5z" fill="#fff" opacity=".95"/>
+          <path d="M9.2 14.2a2.9 2.9 0 0 0 2.4 2.8" stroke="#1d4e89" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <h1>商户水表计量数确认</h1>
+        <p>天津粤海天河城购物中心有限公司 · 工程部</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="mode-tag" id="modeTag">商户入口</span>
+      <button class="btn-ghost" id="modeSwitchBtn">工程部入口</button>
+      <button class="btn-ghost" id="helpBtn" title="使用说明">?</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ 商户视图 ============ -->
+  <section id="merchantView" class="view">
+    <div class="merchant-wrap">
+
+      <div id="mDataNotice" class="notice hidden"></div>
+
+      <!-- 步骤1：查询 -->
+      <div class="card" id="queryCard">
+        <div class="card-title"><span class="bar"></span>查询水表计量信息</div>
+        <div class="search-row">
+          <input class="input" id="shopInput" placeholder="请输入铺位号，如 L8-001" autocomplete="off">
+          <button class="btn btn-primary" id="queryBtn">查询</button>
+        </div>
+        <div class="text-muted" style="margin-top:8px">提示：也可输入商铺名称或水表编号查询；显示<b>最新账期</b>数据供确认，历史账期自动展示在下方；数据如有疑问请联系工程部。</div>
+      </div>
+
+      <!-- 步骤2：信息展示 -->
+      <div class="card hidden" id="infoCard">
+        <div class="shop-head">
+          <div>
+            <div class="name" id="shopName">--</div>
+            <div class="shop-sub" id="shopSub">商铺号：--</div>
+          </div>
+          <div class="floor" id="shopFloor">--</div>
+        </div>
+        <div class="meter-note" id="meterNote"></div>
+        <div class="table-scroll">
+          <table class="grid">
+            <thead><tr><th>水表编号</th><th>规格</th><th>上月读数</th><th>上月用量</th><th>本月读数</th><th>用量(吨)</th><th>单价(元)</th><th>金额(元)</th></tr></thead>
+            <tbody id="meterTbody"></tbody>
+          </table>
+        </div>
+        <div class="summary-line" id="meterTotal" style="margin:12px 0 0"></div>
+        <div class="notice" style="margin:14px 0 0">请核对以上抄表数据，如无误请在下方手写签字确认。</div>
+      </div>
+
+      <!-- 步骤3：签字 -->
+      <div class="card hidden" id="signCard">
+        <div class="card-title"><span class="bar"></span>商户签字确认</div>
+        <div class="sig-box" id="sigBox">
+          <span class="sig-hint">请在此处手写签字</span>
+          <canvas id="sigCanvas" width="600" height="300"></canvas>
+        </div>
+        <div class="sig-tools">
+          <button class="btn btn-gray" id="clearSigBtn">清除重签</button>
+          <button class="btn btn-primary" id="confirmSigBtn">确认签字</button>
+        </div>
+      </div>
+
+      <!-- 签字成功 -->
+      <div class="card hidden" id="signedCard">
+        <div class="signed-card">
+          <div class="signed-icon">✓</div>
+          <h3>签字确认成功</h3>
+          <p id="signedInfo"></p>
+          <div class="sig-preview"><img id="signedImg" alt="签字"></div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-accent" id="exportSigBtn" style="flex:1">导出签字文件</button>
+            <button class="btn btn-outline" id="resignBtn" style="flex:1">重新签字</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 历史账期记录（只读） -->
+      <div class="card hidden" id="historyCard">
+        <div class="card-title"><span class="bar"></span>历史账期记录<span class="sub">只读 · 供核对追溯</span></div>
+        <div id="historyBody"></div>
+      </div>
+
+      <div class="text-center text-muted" style="margin-top:6px">签字数据保存在本机浏览器中，请将「签字文件」交给工程部汇总。<a href="javascript:void(0)" id="refreshDataBtn" style="color:var(--primary);margin-left:6px">刷新数据</a></div>
+      <input type="file" id="mDataFileInput" accept=".csv,.json,text/csv,application/json" class="hidden">
+    </div>
+  </section>
+
+  <!-- ============ 工程部视图 ============ -->
+  <section id="adminView" class="view hidden">
+    <div class="card period-bar">
+      <span class="period-label">账期</span>
+      <select class="input" id="periodSel" style="width:auto;padding:8px 12px"></select>
+      <span class="badge ok" id="periodTag">当前账期</span>
+      <span class="text-muted" id="periodInfo" style="font-size:12.5px"></span>
+    </div>
+    <div class="tabs" id="adminTabs">
+      <button class="tab active" data-tab="data">数据管理</button>
+      <button class="tab" data-tab="sign">签字汇总<span class="cnt" id="signCnt">0/0</span></button>
+      <button class="tab" data-tab="isign">内部签字<span class="cnt" id="intSigCnt">0/3</span></button>
+      <button class="tab" data-tab="pdf">PDF导出</button>
+      <button class="tab" data-tab="qr">商户二维码</button>
+      <button class="tab" data-tab="setting">设置</button>
+    </div>
+
+    <!-- 数据管理 -->
+    <div class="tab-panel" id="panel-data">
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>导入抄表数据（CSV）<span class="sub">支持 .csv，可含表头</span></div>
+        <div class="upload-zone" id="csvZone">
+          <div class="big">点击选择 CSV 文件，或拖拽到此处</div>
+          <div class="small">表头：序号, 月份, 商铺号, 商铺名称, 水表井编号, 水表规格(DN), 上月读数(m³), 上月用量(吨), 本月读数(m³), 用量(吨), 单价(元), 金额(元)<br>「序号」「客户签字」列自动忽略；楼层按铺位号自动识别（如 L8-001 → 8F、B1-301 → B1），也可增加「楼层」列指定；<b>「月份」列</b>（如 2026-09）指定数据所属账期，未填时导入当前选择的账期</div>
+          <input type="file" id="csvInput" accept=".csv,text/csv">
+        </div>
+        <div class="toolbar" style="margin-top:14px">
+          <button class="btn btn-outline btn-sm" id="templateBtn">下载CSV模板</button>
+          <button class="btn btn-outline btn-sm" id="exportDataBtn">导出数据文件(meter-data.json)</button>
+          <button class="btn btn-outline btn-sm" id="importDataBtn">导入数据文件(CSV/JSON)</button>
+          <input type="file" id="dataInput" accept=".csv,.json,text/csv,application/json" class="hidden">
+          <span class="spacer"></span>
+          <button class="btn btn-outline btn-sm" id="clearPeriodBtn">清空当前账期</button>
+          <button class="btn btn-danger btn-sm" id="clearDataBtn">清空全部数据</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>抄表数据列表</div>
+        <div class="toolbar">
+          <select class="input" id="floorFilter" style="width:auto;padding:8px 12px">
+            <option value="">全部楼层</option>
+          </select>
+          <input class="input" id="adminSearch" placeholder="搜索商铺号/名称/水表编号" style="max-width:220px">
+          <span class="spacer"></span>
+          <span class="summary-line" id="dataSummary" style="margin:0"></span>
+        </div>
+        <div class="table-scroll">
+          <table class="grid">
+            <thead><tr>
+              <th>序号</th><th>铺位号</th><th>商铺名称</th><th>楼层</th><th>水表编号</th><th>规格</th><th>上月读数</th><th>上月用量</th><th>本月读数</th><th>用量(吨)</th><th>单价</th><th>金额</th><th>签字状态</th>
+            </tr></thead>
+            <tbody id="dataTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 签字汇总 -->
+    <div class="tab-panel hidden" id="panel-sign">
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>导入商户签字文件<span class="sub">支持多选，来自商户手机导出的 .json 文件</span></div>
+        <div class="upload-zone" id="sigZone">
+          <div class="big">点击选择商户签字文件（可多选）</div>
+          <div class="small">商户在手机上签字后点击「导出签字文件」，将文件通过微信/邮件等方式发送给工程部，在此导入合并</div>
+          <input type="file" id="sigInput" accept=".json,application/json" multiple>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>签字进度</div>
+        <div class="summary-line" id="signSummary"></div>
+        <div class="table-scroll">
+          <table class="grid">
+            <thead><tr><th>铺位号</th><th>商铺名称</th><th>楼层</th><th>水表数</th><th>签字状态</th><th>签字时间</th></tr></thead>
+            <tbody id="signTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 内部签字 -->
+    <div class="tab-panel hidden" id="panel-isign">
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>工程部内部签字（附于楼层 PDF 签字栏）<span class="sub" id="intPeriodLabel">签署账期：--</span></div>
+        <div class="notice" style="margin-top:0">由工程部抄表员、工程部领导、客服代表依次手写签字。生成 PDF 时，三位签字人的签名与日期将附在<b>所选账期</b>每个楼层的签字栏中；未签字的角色在 PDF 中留空线待补签。切换账期后各自独立签署。</div>
+        <div class="int-sig-grid">
+          <div class="int-sig-item" id="intItem-reader">
+            <div class="int-sig-role">工程部抄表员</div>
+            <div class="sig-box" id="intBox-reader"><span class="sig-hint">请在此处手写签字</span><canvas id="intCanvas-reader" width="520" height="200"></canvas></div>
+            <div class="sig-tools">
+              <button class="btn btn-gray int-clear" data-role="reader">清除重签</button>
+              <button class="btn btn-primary int-confirm" data-role="reader">确认签字</button>
+            </div>
+            <div class="int-signed">
+              <div class="sig-preview"><img id="intImg-reader" alt="签字"></div>
+              <p class="int-time" id="intTime-reader"></p>
+              <button class="btn btn-outline btn-sm int-resign" data-role="reader" style="width:100%">重新签字</button>
+            </div>
+          </div>
+          <div class="int-sig-item" id="intItem-leader">
+            <div class="int-sig-role">工程部领导</div>
+            <div class="sig-box" id="intBox-leader"><span class="sig-hint">请在此处手写签字</span><canvas id="intCanvas-leader" width="520" height="200"></canvas></div>
+            <div class="sig-tools">
+              <button class="btn btn-gray int-clear" data-role="leader">清除重签</button>
+              <button class="btn btn-primary int-confirm" data-role="leader">确认签字</button>
+            </div>
+            <div class="int-signed">
+              <div class="sig-preview"><img id="intImg-leader" alt="签字"></div>
+              <p class="int-time" id="intTime-leader"></p>
+              <button class="btn btn-outline btn-sm int-resign" data-role="leader" style="width:100%">重新签字</button>
+            </div>
+          </div>
+          <div class="int-sig-item" id="intItem-service">
+            <div class="int-sig-role">客服代表</div>
+            <div class="sig-box" id="intBox-service"><span class="sig-hint">请在此处手写签字</span><canvas id="intCanvas-service" width="520" height="200"></canvas></div>
+            <div class="sig-tools">
+              <button class="btn btn-gray int-clear" data-role="service">清除重签</button>
+              <button class="btn btn-primary int-confirm" data-role="service">确认签字</button>
+            </div>
+            <div class="int-signed">
+              <div class="sig-preview"><img id="intImg-service" alt="签字"></div>
+              <p class="int-time" id="intTime-service"></p>
+              <button class="btn btn-outline btn-sm int-resign" data-role="service" style="width:100%">重新签字</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF导出 -->
+    <div class="tab-panel hidden" id="panel-pdf">
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>按账期与楼层导出签字确认表（PDF，横版A4）</div>
+        <div id="pdfSummary" class="summary-line"></div>
+        <div id="floorList"></div>
+        <div class="toolbar" style="margin-top:12px">
+          <span class="text-muted" style="font-size:13px">导出范围</span>
+          <select class="input" id="pdfPeriodSel" style="width:auto;padding:8px 12px"></select>
+          <select class="input" id="pdfFloorSel" style="width:auto;padding:8px 12px"></select>
+        </div>
+        <div class="divider"></div>
+        <button class="btn btn-primary btn-block" id="pdfBtn" style="padding:14px">生成 PDF 签字确认表</button>
+        <div class="text-muted" style="margin-top:10px">PDF 按所选<b>账期</b>与<b>楼层</b>导出，包含商铺号、商铺名称、水表井编号、规格、上月/本月读数、上月用量、用水吨数、水费单价、水费金额及该账期商户电子签字图像；每个楼层末尾附工程部抄表员、工程部领导、客服代表签字栏（在「内部签字」中按账期签署）；未签字商户将标注「未签字」。</div>
+      </div>
+    </div>
+
+    <!-- 二维码 -->
+    <div class="tab-panel hidden" id="panel-qr">
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>生成商户访问二维码</div>
+        <div class="qr-box">
+          <div class="qr-canvas-box">
+            <div id="qrBox" style="width:220px;height:220px;display:flex;align-items:center;justify-content:center"></div>
+            <div class="qr-tip">商户扫码后输入商铺号查询并签字</div>
+            <button class="btn btn-outline btn-sm" id="qrDownloadBtn" style="margin-top:10px;width:100%">下载二维码图片</button>
+          </div>
+          <div class="qr-right">
+            <div class="field">
+              <label>页面访问地址（GitHub Pages 部署后的 URL）</label>
+              <input class="input" id="qrUrlInput" placeholder="https://用户名.github.io/仓库名/">
+            </div>
+            <div class="text-muted" style="margin-bottom:14px">二维码指向该地址。请将部署后的正式 URL 填入，确保商户扫码可访问。</div>
+            <button class="btn btn-primary" id="qrGenBtn">生成二维码</button>
+            <div class="notice" style="margin-top:14px">商户扫码打开页面后，系统会自动加载同目录下的 <code>meter-data.json</code> 数据文件。请在「数据管理」中导入 CSV 后点击「导出数据文件」，将生成的 <code>meter-data.json</code> 与页面一起部署。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 设置 -->
+    <div class="tab-panel hidden" id="panel-setting">
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>系统设置</div>
+        <div class="field">
+          <label>商场/公司名称（显示在页面与 PDF 标题中）</label>
+          <input class="input" id="setMallName" placeholder="天津粤海天河城购物中心有限公司">
+        </div>
+        <div class="field">
+          <label>当前账期（月份，新导入 CSV 未填「月份」列时归入此账期）</label>
+          <input class="input" id="setPeriod" type="month">
+        </div>
+        <div class="field">
+          <label>水费单价默认值（元/吨，CSV 未填单价时使用）</label>
+          <input class="input" id="setPrice" type="number" step="0.01" placeholder="7.90">
+        </div>
+        <div class="field">
+          <label>工程部管理密码</label>
+          <input class="input" id="setPin" type="text" placeholder="默认 123456">
+        </div>
+        <button class="btn btn-primary" id="saveSettingBtn">保存设置</button>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>关于本系统</div>
+        <div class="help-list">
+          <div class="step"><div class="t">使用流程</div>
+            1. 工程部在「设置」中选择当前账期 → 2. 导入 CSV 抄表数据（可含「月份」列，一次导入多个月） → 3. 导出 <code>meter-data.json</code> 并部署 → 4. 商户扫码输入商铺号核对<b>最新账期</b>并手写签字（可查看历史账期） → 5. 商户导出签字文件发给工程部 → 6. 工程部导入签字文件按账期汇总 → 7. 内部三方（抄表员/领导/客服代表）按账期签署 → 8. 按<b>账期+楼层</b>生成 PDF 签字确认表。
+          </div>
+          <div class="step"><div class="t">数据说明</div>
+            抄表与签字均以账期（月）为单位管理：各账期数据、商户签字、内部签字相互独立，切换账期即可浏览历史记录。所有数据保存在各设备浏览器本地（localStorage），不上传服务器；多设备通过「签字文件」手动合并。同一商铺号有多只水表时，商户一次签字即确认该商铺全部水表。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>天津粤海天河城购物中心有限公司 工程部 · 水表抄数签字确认系统 · 数据仅保存在本地浏览器</footer>
+
+<!-- ===== 模态框 ===== -->
+<div class="modal-mask hidden" id="pinModal">
+  <div class="modal" style="max-width:360px">
+    <div class="modal-head"><h3>工程部入口</h3><button class="modal-close" data-close="pinModal">×</button></div>
+    <div class="modal-body">
+      <div class="field">
+        <label>请输入管理密码</label>
+        <input class="input pin-input" id="pinInput" type="password" maxlength="12" placeholder="••••••">
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-gray" data-close="pinModal">取消</button>
+      <button class="btn btn-primary" id="pinOkBtn">进入管理</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask hidden" id="csvPreviewModal">
+  <div class="modal">
+    <div class="modal-head"><h3>CSV 数据预览</h3><button class="modal-close" data-close="csvPreviewModal">×</button></div>
+    <div class="modal-body">
+      <div class="summary-line" id="csvPreviewSummary"></div>
+      <div class="table-scroll">
+        <table class="grid" id="csvPreviewTable"></table>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-gray" data-close="csvPreviewModal">取消</button>
+      <button class="btn btn-primary" id="csvConfirmBtn">确认导入</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-mask hidden" id="helpModal">
+  <div class="modal">
+    <div class="modal-head"><h3>使用说明</h3><button class="modal-close" data-close="helpModal">×</button></div>
+    <div class="modal-body">
+      <div class="help-list">
+        <div class="step"><div class="t">一、工程部：按账期导入抄表数据</div>
+          进入「工程部入口」（默认密码 <code>123456</code>，可在设置中修改），先在「设置」中选择<b>当前账期</b>，再到「数据管理」导入 CSV 文件。表头：<code>序号, 月份, 商铺号, 商铺名称, 水表井编号, 水表规格(DN), 上月读数(m³), 上月用量(吨), 本月读数(m³), 用量(吨), 单价(元), 金额(元)</code>。「序号」「客户签字」列自动忽略；楼层按铺位号自动识别（如 L8-001 → 8F、B1-301 → B1），也可增加「楼层」列指定；「月份」列（如 2026-09）可将数据导入指定账期，未填时归入当前账期。CSV 中已填写的用量、金额将直接采用，未填写时自动按「本月读数−上月读数」「用量×单价」计算。顶部账期选择器可切换浏览各月历史数据。
+        </div>
+        <div class="step"><div class="t">二、工程部：发布数据文件</div>
+          点击「导出数据文件」得到 <code>meter-data.json</code>（包含全部账期），与页面一起部署到 GitHub Pages。商户扫码后页面会自动加载该文件。「导入数据文件」同时支持 CSV 与 <code>meter-data.json</code>（自动识别），可用于恢复备份的数据。
+        </div>
+        <div class="step"><div class="t">三、商户：扫码核对并签字</div>
+          商户扫码打开页面 → 输入商铺号（也可输商铺名称）→ 核对<b>最新账期</b>该商铺全部水表的读数、用量、单价、金额 → 手写签字确认 → 点击「导出签字文件」将文件发给工程部。页面上方可查看该商铺<b>历史账期</b>记录（只读）。
+        </div>
+        <div class="step"><div class="t">四、工程部：按账期汇总签字</div>
+          切换到对应账期，在「签字汇总」中导入该账期各商户的签字文件，查看签字进度；再由抄表员、工程部领导、客服代表在「内部签字」中完成该账期签署。
+        </div>
+        <div class="step"><div class="t">五、工程部：按账期与楼层导出 PDF</div>
+          在「PDF导出」中选择账期与楼层，生成横版 A4 签字确认表，含电子签字图像与内部三方签字栏。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ================= 常量与工具 ================= */
+var LS_DATA='wm_meter_data', LS_SIGS='wm_sigs', LS_SET='wm_settings', LS_INTSIGS='wm_intsigs';
+var INT_ROLES=[{k:'reader',t:'工程部抄表员'},{k:'leader',t:'工程部领导'},{k:'service',t:'客服代表'}];
+var DEFAULT_SET={period:'',pin:'123456',defaultPrice:7.9,mallName:'天津粤海天河城购物中心有限公司'};
+
+function getLS(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+function setLS(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function round2(n){return Math.round((Number(n)||0)*100)/100}
+function fmtAuto(n){return String(round2(n))}
+function nowStr(){var d=new Date(),p=function(x){return (x<10?'0':'')+x};return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function downloadBlob(blob,name){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},300)}
+
+/* ---- 账期（月）工具 ---- */
+function nowYM(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)}
+function normPeriodKey(s){
+  if(s==null)return '';
+  var m=/^(\d{4})[-\/年.]\s*(\d{1,2})/.exec(String(s).trim());
+  if(m)return m[1]+'-'+(Number(m[2])<10?'0':'')+Number(m[2]);
+  return '';
+}
+function ymLabel(p){var m=/^(\d{4})-(\d{2})$/.exec(String(p||''));return m?(Number(m[1])+'年'+Number(m[2])+'月'):(p||'--')}
+function ymKey(p){var m=/^(\d{4})-(\d{2})$/.exec(String(p||''));return m?Number(m[1])*100+Number(m[2]):0}
+function prevPeriod(p){var m=/^(\d{4})-(\d{2})$/.exec(String(p||''));if(!m)return '';var y=Number(m[1]),mo=Number(m[2])-1;if(mo<1){y--;mo=12}return y+'-'+(mo<10?'0':'')+mo}
+
+function toast(msg,type){var w=document.getElementById('toast-wrap');var t=document.createElement('div');t.className='toast '+(type||'');t.textContent=msg;w.appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(function(){t.remove()},300)},2600)}
+
+function openModal(id){document.getElementById(id).classList.remove('hidden')}
+function closeModal(id){document.getElementById(id).classList.add('hidden')}
+
+/* ================= 状态 ================= */
+var state={mode:'merchant',currentShop:null,currentPeriod:null,currentRecs:[],histOnly:false,pad:null,intPads:{},pendingCSV:null,period:null,mPeriod:null};
+
+/* ================= 账期数据访问（数据/签字均按月存储，自动迁移旧格式） ================= */
+function getSettings(){
+  var s=Object.assign({},DEFAULT_SET,getLS(LS_SET)||{});
+  if(!norm(s.mallName))s.mallName=DEFAULT_SET.mallName;
+  return s;
+}
+function saveSettings(s){setLS(LS_SET,s)}
+function curPeriod(){return normPeriodKey(getSettings().period)||nowYM()}
+function migratePeriod(){return normPeriodKey(getSettings().period)||nowYM()}
+
+function getAllData(){
+  var v=getLS(LS_DATA);
+  if(!v)return {};
+  if(Array.isArray(v)){var o={};o[migratePeriod()]=v;return o}
+  if(typeof v==='object')return v;
+  return {};
+}
+function setData(p,recs){var all=getAllData();if(recs&&recs.length)all[p]=recs;else delete all[p];setLS(LS_DATA,all)}
+
+function getAllSigs(){
+  var v=getLS(LS_SIGS);
+  if(!v)return {};
+  for(var k in v){if(v[k]&&typeof v[k]==='object'&&v[k].签字图像){var o={};o[migratePeriod()]=v;setLS(LS_SIGS,o);return o}}
+  return v;
+}
+function getSigs(p){if(p==null)p=state.mode==='merchant'?merchantPeriod():(state.period||curPeriod());var v=getAllSigs()[p];return (v&&typeof v==='object')?v:{}}
+function setSigs(p,obj){var all=getAllSigs();if(obj&&Object.keys(obj).length)all[p]=obj;else delete all[p];setLS(LS_SIGS,all)}
+
+function getAllIntSigs(){
+  var v=getLS(LS_INTSIGS);
+  if(!v)return {};
+  for(var k in v){if(v[k]&&typeof v[k]==='object'&&v[k].签字图像){var o={};o[migratePeriod()]=v;setLS(LS_INTSIGS,o);return o}}
+  return v;
+}
+function getIntSigs(p){if(p==null)p=state.period||curPeriod();var v=getAllIntSigs()[p];return (v&&typeof v==='object')?v:{}}
+function setIntSigs(p,obj){var all=getAllIntSigs();if(obj&&Object.keys(obj).length)all[p]=obj;else delete all[p];setLS(LS_INTSIGS,all)}
+
+function getRecords(p){
+  if(p==null)p=state.mode==='merchant'?merchantPeriod():(state.period||(state.period=newestPeriod()));
+  var v=getAllData()[p];
+  return Array.isArray(v)?v:[];
+}
+function periodList(){
+  var set={},all=getAllData();
+  for(var p in all){if(Array.isArray(all[p])&&all[p].length)set[p]=1}
+  set[curPeriod()]=1;
+  return Object.keys(set).sort(function(a,b){return ymKey(b)-ymKey(a)});
+}
+function newestPeriod(){
+  var all=getAllData(),best='',bk=-1;
+  for(var p in all){if(Array.isArray(all[p])&&all[p].length){var k=ymKey(p);if(k>bk){bk=k;best=p}}}
+  return best||curPeriod();
+}
+function merchantPeriod(){if(!state.mPeriod)state.mPeriod=newestPeriod();return state.mPeriod}
+
+/* ================= 模式切换 ================= */
+function setMode(mode){
+  state.mode=mode;
+  var isAdmin=mode==='admin';
+  document.getElementById('merchantView').classList.toggle('hidden',isAdmin);
+  document.getElementById('adminView').classList.toggle('hidden',!isAdmin);
+  document.getElementById('modeTag').textContent=isAdmin?'工程部管理':'商户入口';
+  document.getElementById('modeSwitchBtn').textContent=isAdmin?'返回商户入口':'工程部入口';
+  if(isAdmin){renderAdminAll()}
+}
+
+function tryEnterAdmin(){
+  if(sessionStorage.getItem('wm_admin')==='1'){setMode('admin');return}
+  openModal('pinModal');
+  document.getElementById('pinInput').value='';
+  setTimeout(function(){document.getElementById('pinInput').focus()},50);
+}
+
+/* ================= CSV ================= */
+var HEADER_MAP={
+  '商铺号':'铺位号','铺位号':'铺位号','铺位':'铺位号','铺位编号':'铺位号','商铺编号':'铺位号','商铺':'铺位号','shop':'铺位号','shopno':'铺位号','shop_no':'铺位号','no':'铺位号',
+  '商铺名称':'商铺名称','铺位名称':'商铺名称','商户名称':'商铺名称','店铺名称':'商铺名称','店名':'商铺名称','名称':'商铺名称','shopname':'商铺名称','shop_name':'商铺名称',
+  '楼层':'楼层','层':'楼层','floor':'楼层','floor_no':'楼层',
+  '水表编码':'水表编码','水表编号':'水表编码','水表号':'水表编码','水表井编号':'水表编码','水表井':'水表编码','表井编号':'水表编码','表井号':'水表编码','表号':'水表编码','表编码':'水表编码','meter':'水表编码','metercode':'水表编码','meter_code':'水表编码',
+  '水表规格':'水表规格','规格':'水表规格','口径':'水表规格','dn':'水表规格',
+  '上期读数':'上期读数','上月读数':'上期读数','上期':'上期读数','上次读数':'上期读数','last':'上期读数','lastreading':'上期读数','last_reading':'上期读数',
+  '上期用量':'上期用量','上月用量':'上期用量','上次用量':'上期用量',
+  '本期读数':'本期读数','本月读数':'本期读数','当月读数':'本期读数','本期':'本期读数','本次读数':'本期读数','current':'本期读数','currentreading':'本期读数','current_reading':'本期读数',
+  '当月用水吨数':'当月用水吨数','用量':'当月用水吨数','本月用量':'当月用水吨数','当月用量':'当月用水吨数','用水量':'当月用水吨数','用水吨数':'当月用水吨数','吨数':'当月用水吨数','usage':'当月用水吨数',
+  '水费单价':'水费单价','单价':'水费单价','水价':'水费单价','price':'水费单价','unitprice':'水费单价','unit_price':'水费单价',
+  '当月水费金额':'当月水费金额','金额':'当月水费金额','水费金额':'当月水费金额','当月金额':'当月水费金额','amount':'当月水费金额',
+  '月份':'月份','账期':'月份','抄表月份':'月份','抄表账期':'月份','年月':'月份','period':'月份','month':'月份'
+};
+function norm(s){return String(s==null?'':s).replace(/^\uFEFF/,'').trim()}
+function mapHeader(h){
+  var k=norm(h).replace(/[（(][^）)]*[)）]/g,'').replace(/\s+/g,'').toLowerCase();
+  return HEADER_MAP[k]||norm(h);
+}
+function numOf(v){
+  if(v==null)return NaN;
+  var s=String(v).replace(/[,，\s]/g,'');
+  if(s==='')return NaN;
+  return parseFloat(s);
+}
+/* 按铺位号推导楼层：L8-001→8F，1001→10F，B1-301→B1 */
+function deriveFloor(shop){
+  var s=String(shop||'').toUpperCase().trim();
+  var m=/^B(\d+)/.exec(s);
+  if(m)return 'B'+m[1];
+  m=/^L(\d+)/.exec(s);
+  if(m)return m[1]+'F';
+  m=/^(\d+)/.exec(s);
+  if(!m)return '';
+  var d=m[1];
+  return (d.length>=4?d.slice(0,2):d.slice(0,1))+'F';
+}
+function floorSort(a,b){
+  var pa=/^B(\d+)$/i.exec(a),pb=/^B(\d+)$/i.exec(b);
+  if(pa&&pb)return Number(pa[1])-Number(pb[1]);
+  if(pa)return -1;if(pb)return 1;
+  var na=/^(\d+)/.exec(a),nb=/^(\d+)/.exec(b);
+  if(na&&nb)return Number(na[1])-Number(nb[1]);
+  return a<b?-1:1;
+}
+
+function parseCSVText(text){
+  var rows=[];
+  Papa.parse(text,{skipEmptyLines:true,header:true,transformHeader:mapHeader,complete:function(r){rows=r.data}});
+  var settings=getSettings();
+  var records=[],errors=[];
+  rows.forEach(function(r,i){
+    var shop=norm(r['铺位号']),name=norm(r['商铺名称']);
+    if(!shop&&!name)return;
+    if(!shop){errors.push('第'+(i+2)+'行：有商铺名称「'+name+'」但缺少商铺号，已跳过');return}
+    var last=numOf(r['上期读数']),cur=numOf(r['本期读数']);
+    var price=numOf(r['水费单价']),usage=numOf(r['当月用水吨数']),amount=numOf(r['当月水费金额']);
+    var lastUsage=numOf(r['上期用量']);
+    var hasUsage=!isNaN(usage);
+    if(isNaN(last))last=0;
+    if(isNaN(cur))cur=0;
+    if(isNaN(price))price=settings.defaultPrice;
+    if(!hasUsage)usage=round2(cur-last);
+    if(isNaN(amount))amount=round2(usage*price);
+    if(!hasUsage&&cur<last)errors.push('商铺 '+shop+(name?'（'+name+'）':'')+'：本月读数小于上月读数，请核对');
+    records.push({
+      月份:normPeriodKey(r['月份']),
+      铺位号:shop,
+      商铺名称:name,
+      楼层:norm(r['楼层'])||deriveFloor(shop)||'未分层',
+      水表编码:norm(r['水表编码'])||'--',
+      水表规格:norm(r['水表规格']),
+      上期读数:last,
+      上期用量:isNaN(lastUsage)?null:lastUsage,
+      本期读数:cur,
+      水费单价:price,
+      当月用水吨数:usage,
+      当月水费金额:amount
+    });
+  });
+  return {records:records,errors:errors};
+}
+
+/* 兼容 Excel 另存的 UTF-8(BOM) 与 ANSI(GBK) 编码 */
+function decodeCSVBuffer(buf){
+  if(buf&&buf.length>2&&buf[0]===0xEF&&buf[1]===0xBB&&buf[2]===0xBF){
+    return new TextDecoder('utf-8').decode(buf.subarray(3));
+  }
+  var text=new TextDecoder('utf-8').decode(buf);
+  if(text.indexOf('\uFFFD')>=0){
+    try{return new TextDecoder('gbk').decode(buf)}catch(e){}
+  }
+  return text;
+}
+
+function downloadTemplate(){
+  var csv='\uFEFF序号,月份,商铺号,商铺名称,水表井编号,水表规格(DN),上月读数(m³),上月用量(吨),本月读数(m³),用量(吨),单价(元),金额(元)\n'+
+    '1,2026-09,L8-001,海底捞火锅,8F-W01,40,12580,612,13298,718,5.95,4272.1\n'+
+    '2,2026-09,L8-001,海底捞火锅（后厨专表）,8F-W02,32,8630,425,9077,447,5.95,2659.65\n'+
+    '3,2026-09,L8-003,喜茶,8F-W04,25,2046,98,2165,119,5.95,708.05\n'+
+    '4,2026-09,L7-101,优衣库,7F-W01,25,4132,202,4291,159,5.95,946.05\n'+
+    '5,2026-09,B1-301,盒马鲜生,B1-W01,80,96850,2654,99327,2477,5.95,14738.15';
+  downloadBlob(new Blob([csv],{type:'text/csv;charset=utf-8'}),'水表抄表数据模板.csv');
+}
+
+function showCSVPreview(result){
+  var recs=result.records;
+  var periods={};
+  recs.forEach(function(r){if(r.月份)periods[r.月份]=1});
+  var pl=Object.keys(periods);
+  document.getElementById('csvPreviewSummary').innerHTML='共解析 <b>'+recs.length+'</b> 条水表记录'+(pl.length?'，账期：<b>'+esc(pl.map(ymLabel).join('、'))+'</b>':'（未填「月份」列，将导入当前账期 '+esc(ymLabel(state.period||curPeriod()))+'）')+(result.errors.length?'，<span style="color:#c62828">'+result.errors.length+' 条提示</span>':'');
+  var tbody='';
+  recs.slice(0,8).forEach(function(r){
+    tbody+='<tr><td>'+(r.月份?ymLabel(r.月份):'--')+'</td><td>'+esc(r.铺位号)+'</td><td>'+esc(r.商铺名称||'--')+'</td><td>'+esc(r.楼层)+'</td><td>'+esc(r.水表编码)+'</td><td>'+fmtAuto(r.上期读数)+'</td><td>'+fmtAuto(r.本期读数)+'</td><td>'+fmtAuto(r.当月用水吨数)+'</td><td>'+fmtAuto(r.水费单价)+'</td><td>'+fmtAuto(r.当月水费金额)+'</td></tr>';
+  });
+  if(recs.length>8)tbody+='<tr><td colspan="10" style="color:#9aa3af">…… 共 '+recs.length+' 条</td></tr>';
+  document.getElementById('csvPreviewTable').innerHTML='<thead><tr><th>账期</th><th>商铺号</th><th>商铺名称</th><th>楼层</th><th>水表编号</th><th>上月读数</th><th>本月读数</th><th>用量</th><th>单价</th><th>金额</th></tr></thead><tbody>'+tbody+'</tbody>';
+  var old=document.getElementById('csvErrBox');
+  if(old)old.remove();
+  if(result.errors.length){
+    var errBox=document.createElement('div');
+    errBox.id='csvErrBox';
+    errBox.className='notice error';errBox.style.marginTop='10px';
+    errBox.innerHTML='<b>提示：</b>'+esc(result.errors.join('；'));
+    var tb=document.getElementById('csvPreviewTable');tb.parentNode.insertBefore(errBox,tb.nextSibling);
+  }
+  openModal('csvPreviewModal');
+}
+
+function doImportCSV(text){
+  var result=parseCSVText(text);
+  if(!result.records.length){toast('未解析到有效数据，请检查CSV格式','error');return}
+  state.pendingCSV=result;
+  showCSVPreview(result);
+}
+
+function confirmCSVImport(){
+  if(!state.pendingCSV)return;
+  var defP=state.period||curPeriod(),groups={};
+  state.pendingCSV.records.forEach(function(r){
+    var p=r.月份||defP;
+    (groups[p]=groups[p]||[]).push(r);
+  });
+  var all=getAllData(),sigsAll=getAllSigs(),n=0,ps=[];
+  for(var p in groups){
+    var arr=groups[p];n+=arr.length;ps.push(ymLabel(p));
+    all[p]=arr;
+    var sv=sigsAll[p]||{},keep={};
+    arr.forEach(function(r){if(sv[r.铺位号])keep[r.铺位号]=sv[r.铺位号]});
+    sigsAll[p]=keep;
+  }
+  setLS(LS_DATA,all);setLS(LS_SIGS,sigsAll);
+  closeModal('csvPreviewModal');
+  state.pendingCSV=null;
+  state.mPeriod=null;
+  state.period=Object.keys(groups).sort(function(a,b){return ymKey(b)-ymKey(a)})[0]||defP;
+  updateMerchantNotice(true);
+  toast('已导入 '+n+' 条抄表数据（账期：'+ps.join('、')+'）','success');
+  renderAdminAll();
+}
+
+/* ================= 数据文件导出/导入 ================= */
+function exportDataFile(){
+  var all=getAllData();
+  var ps=Object.keys(all).filter(function(p){return Array.isArray(all[p])&&all[p].length});
+  if(!ps.length){toast('暂无数据，请先导入CSV','error');return}
+  var payload={type:'water-meter-data',version:3,exportedAt:nowStr(),currentPeriod:curPeriod(),periods:all,intsigns:getAllIntSigs()};
+  downloadBlob(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),'meter-data.json');
+}
+
+function importAnyDataFile(file){
+  var fr=new FileReader();
+  fr.onload=function(e){
+    var text=decodeCSVBuffer(new Uint8Array(e.target.result));
+    var j=null;
+    try{j=JSON.parse(text)}catch(err){}
+    if(j){
+      if(j.periods){
+        if(!confirm('导入数据文件将覆盖当前全部账期数据，是否继续？'))return;
+        applyPeriodsData(j);
+      }else if(j.records&&j.records.length){
+        if(!confirm('导入数据文件将覆盖当前账期（'+ymLabel(state.period||curPeriod())+'）的抄表数据，是否继续？'))return;
+        applyJSONData(j);
+      }else{
+        toast('数据文件格式不正确（若为签字文件请在「签字汇总」中导入）','error');return;
+      }
+    }else{
+      doImportCSV(text);
+    }
+  };
+  fr.readAsArrayBuffer(file);
+}
+
+function applyPeriodsData(j){
+  var all={},sigsAll=getAllSigs();
+  for(var p in j.periods){
+    var arr=j.periods[p];
+    if(!Array.isArray(arr)||!arr.length)continue;
+    var np=normPeriodKey(p)||p;
+    all[np]=arr;
+    var sv=sigsAll[np]||{},keep={};
+    arr.forEach(function(r){if(sv[r.铺位号])keep[r.铺位号]=sv[r.铺位号]});
+    sigsAll[np]=keep;
+  }
+  setLS(LS_DATA,all);setLS(LS_SIGS,sigsAll);
+  if(j.intsigns){
+    var ia={};
+    for(var ip in j.intsigns){var np2=normPeriodKey(ip)||ip;var v=j.intsigns[ip];if(v&&Object.keys(v).length)ia[np2]=v}
+    setLS(LS_INTSIGS,ia);
+  }
+  state.mPeriod=null;
+  state.period=newestPeriod();
+  updateMerchantNotice(true);
+  toast('已导入 '+Object.keys(all).length+' 个账期的数据','success');
+  renderAdminAll();
+}
+
+function applyJSONData(j){
+  var recs=j.records;
+  var p=normPeriodKey(j.period)||state.period||curPeriod();
+  var oldSigs=getSigs(p),valid={};
+  recs.forEach(function(r){if(oldSigs[r.铺位号])valid[r.铺位号]=oldSigs[r.铺位号]});
+  setData(p,recs);setSigs(p,valid);
+  if(j.intsigs){
+    var iv=j.intsigs,old=true;
+    for(var k in iv){if(iv[k]&&iv[k].签字图像){old=true;break}}
+    if(old){
+      var clean={};
+      INT_ROLES.forEach(function(ro){if(iv[ro.k])clean[ro.k]=iv[ro.k]});
+      setIntSigs(p,clean);
+    }else{
+      setIntSigs(p,iv);
+    }
+  }
+  state.mPeriod=null;
+  state.period=p;
+  updateMerchantNotice(true);
+  toast('已导入 '+recs.length+' 条数据（账期：'+ymLabel(p)+'）','success');
+  renderAdminAll();
+}
+
+/* ================= 商户端数据加载 ================= */
+function normalizeMerchantPayload(j){
+  if(j.periods){
+    var all={};
+    for(var p in j.periods){var arr=j.periods[p];if(Array.isArray(arr)&&arr.length)all[normPeriodKey(p)||p]=arr}
+    return all;
+  }
+  if(j.records&&j.records.length){
+    var o={};o[normPeriodKey(j.period)||nowYM()]=j.records;return o;
+  }
+  return null;
+}
+function ensureMerchantData(){
+  var all=getAllData();
+  for(var p in all){if(Array.isArray(all[p])&&all[p].length)return Promise.resolve(true)}
+  return fetch('meter-data.json',{cache:'no-store'}).then(function(res){
+    if(!res.ok)throw new Error('not found');
+    return res.json();
+  }).then(function(j){
+    var norm=normalizeMerchantPayload(j);
+    if(norm){setLS(LS_DATA,norm);state.mPeriod=null;return true}
+    return false;
+  }).catch(function(){return false});
+}
+
+function refreshMerchantData(){
+  setLS(LS_DATA,null);
+  state.mPeriod=null;
+  return ensureMerchantData();
+}
+
+function updateMerchantNotice(ok){
+  var n=document.getElementById('mDataNotice');
+  if(ok){
+    n.className='notice success hidden';
+    n.innerHTML='';
+  }else{
+    n.className='notice';
+    n.innerHTML='<b>未获取到抄表数据。</b>请确认页面已随 <code>meter-data.json</code> 一起部署；或联系工程部获取抄表 CSV / 数据文件后，<button class="btn btn-outline btn-sm" id="mImportDataBtn" style="margin-left:6px">导入数据文件(CSV/JSON)</button>';
+    var b=document.getElementById('mImportDataBtn');
+    if(b)b.onclick=function(){document.getElementById('mDataFileInput').click()};
+  }
+}
+
+/* ================= 商户查询 ================= */
+function queryShop(){
+  var kw=norm(document.getElementById('shopInput').value);
+  if(!kw){toast('请输入商铺号','warn');return}
+  var recs=getRecords();
+  if(!recs.length){toast('当前无抄表数据，请刷新或联系工程部','error');return}
+  var kwl=kw.toLowerCase();
+  var shop=null;
+  for(var i=0;i<recs.length;i++){
+    var r=recs[i];
+    if(String(r.铺位号).toLowerCase()===kwl||String(r.水表编码).toLowerCase()===kwl||String(r.商铺名称||'').toLowerCase()===kwl){shop=r.铺位号;break}
+  }
+  if(!shop){toast('未找到「'+kw+'」，请核对后重试','error');return}
+  var list=recs.filter(function(x){return String(x.铺位号)===String(shop)});
+  state.currentShop=shop;
+  state.currentRecs=list;
+  renderShopInfo(shop,list);
+}
+
+function renderShopInfo(shop,recs){
+  var r0=recs[0];
+  document.getElementById('shopName').textContent=r0.商铺名称||shop;
+  document.getElementById('shopSub').textContent='商铺号：'+shop;
+  document.getElementById('shopFloor').textContent=r0.楼层;
+  document.getElementById('meterNote').textContent='该商铺共 '+recs.length+' 只水表'+(recs.length>1?'，请逐只核对':'');
+  var html='',tu=0,ta=0;
+  recs.forEach(function(r){
+    tu+=Number(r.当月用水吨数)||0;ta+=Number(r.当月水费金额)||0;
+    html+='<tr><td>'+esc(r.水表编码||'--')+'</td><td>'+esc(r.水表规格==null||r.水表规格===''?'--':r.水表规格)+'</td><td>'+fmtAuto(r.上期读数)+'</td><td>'+(r.上期用量==null?'--':fmtAuto(r.上期用量))+'</td><td>'+fmtAuto(r.本期读数)+'</td><td><b>'+fmtAuto(r.当月用水吨数)+'</b></td><td>'+fmtAuto(r.水费单价)+'</td><td><b style="color:var(--accent)">'+fmtAuto(r.当月水费金额)+'</b></td></tr>';
+  });
+  if(recs.length>1){
+    html+='<tr><td colspan="5" style="text-align:right;font-weight:700;color:var(--primary-dark)">合计</td><td><b>'+fmtAuto(tu)+'</b></td><td></td><td><b style="color:var(--accent)">'+fmtAuto(ta)+'</b></td></tr>';
+  }
+  document.getElementById('meterTbody').innerHTML=html;
+  document.getElementById('meterTotal').innerHTML=recs.length>1?('合计用水 <b>'+fmtAuto(tu)+'</b> 吨，合计水费 <b>'+fmtAuto(ta)+'</b> 元'):'本月用水 <b>'+fmtAuto(tu)+'</b> 吨，水费 <b>'+fmtAuto(ta)+'</b> 元';
+  document.getElementById('infoCard').classList.remove('hidden');
+  var sigs=getSigs();
+  var sig=sigs[shop];
+  if(sig&&sig.签字图像){
+    showSignedState(sig);
+  }else{
+    document.getElementById('signCard').classList.remove('hidden');
+    document.getElementById('signedCard').classList.add('hidden');
+    if(state.pad)state.pad.clear();
+    document.getElementById('sigBox').classList.remove('has-sig');
+  }
+  document.getElementById('infoCard').scrollIntoView({behavior:'smooth',block:'start'});
+  renderHistory(shop);
+}
+
+function renderHistory(shop){
+  var body=document.getElementById('historyBody');
+  var all=getAllData();
+  var curP=merchantPeriod();
+  var periods=Object.keys(all).filter(function(p){return Array.isArray(all[p])&&all[p].length&&p!==curP}).sort(function(a,b){return ymKey(b)-ymKey(a)});
+  var html='';
+  periods.forEach(function(p){
+    var recs=all[p].filter(function(r){return String(r.铺位号)===String(shop)});
+    if(!recs.length)return;
+    var sigs=getSigs(p),sig=sigs[shop];
+    var tu=0,ta=0;
+    recs.forEach(function(r){tu+=Number(r.当月用水吨数)||0;ta+=Number(r.当月水费金额)||0});
+    html+='<div class="hist-block">';
+    html+='<div class="hist-head"><span class="t">'+esc(ymLabel(p))+'</span><span class="badge '+(sig?'ok':'no')+'">'+(sig?'已确认':'未确认')+'</span></div>';
+    html+='<div class="table-scroll"><table class="grid"><thead><tr><th>水表编号</th><th>规格</th><th>上月读数</th><th>本月读数</th><th>用量(吨)</th><th>单价</th><th>金额(元)</th></tr></thead><tbody>';
+    recs.forEach(function(r){
+      html+='<tr><td>'+esc(r.水表编码||'--')+'</td><td>'+esc(r.水表规格==null||r.水表规格===''?'--':r.水表规格)+'</td><td>'+fmtAuto(r.上期读数)+'</td><td>'+fmtAuto(r.本期读数)+'</td><td>'+fmtAuto(r.当月用水吨数)+'</td><td>'+fmtAuto(r.水费单价)+'</td><td>'+fmtAuto(r.当月水费金额)+'</td></tr>';
+    });
+    if(recs.length>1)html+='<tr><td colspan="4" style="text-align:right;font-weight:700;color:var(--primary-dark)">合计</td><td><b>'+fmtAuto(tu)+'</b></td><td></td><td><b style="color:var(--accent)">'+fmtAuto(ta)+'</b></td></tr>';
+    html+='</tbody></table></div>';
+    if(sig)html+='<div class="hist-sig">签字时间：'+esc(sig.签字时间)+'<img src="'+sig.签字图像+'" alt="签字"></div>';
+    html+='</div>';
+  });
+  body.innerHTML=html||'<div class="text-muted" style="padding:6px 0">暂无历史账期记录</div>';
+  document.getElementById('historyCard').classList.toggle('hidden',!html);
+}
+
+/* ================= 签字 ================= */
+function initSignaturePad(){
+  var canvas=document.getElementById('sigCanvas');
+  if(!window.SignaturePad)return;
+  state.pad=new SignaturePad(canvas,{backgroundColor:'rgb(255,255,255)',penColor:'#0b1f3a',minWidth:1.4,maxWidth:3.2});
+  state.pad.addEventListener('beginStroke',function(){document.getElementById('sigBox').classList.add('has-sig')});
+}
+
+function confirmSignature(){
+  if(!state.currentShop){toast('请先查询商铺','warn');return}
+  if(!state.pad||state.pad.isEmpty()){toast('请先手写签字','warn');return}
+  var r0=state.currentRecs[0];
+  var p=merchantPeriod();
+  var sig={type:'water-meter-signature',version:2,账期:p,铺位号:state.currentShop,商铺名称:r0.商铺名称||'',楼层:r0.楼层,水表数量:state.currentRecs.length,签字图像:state.pad.toDataURL('image/png'),签字时间:nowStr()};
+  var sigs=getSigs(p);sigs[state.currentShop]=sig;setSigs(p,sigs);
+  showSignedState(sig);
+  toast('签字确认成功','success');
+}
+
+function showSignedState(sig){
+  document.getElementById('signCard').classList.add('hidden');
+  document.getElementById('signedCard').classList.remove('hidden');
+  var meters=sig.水表数量||1;
+  document.getElementById('signedInfo').textContent='已确认账期 '+ymLabel(sig.账期||merchantPeriod())+' 商铺 '+sig.铺位号+(meters>1?'（共 '+meters+' 只水表）':'')+' 的抄表数据，签字时间：'+sig.签字时间;
+  document.getElementById('signedImg').src=sig.签字图像;
+}
+
+function exportSignatureFile(){
+  if(!state.currentShop)return;
+  var sig=getSigs()[state.currentShop];
+  if(!sig){toast('请先签字确认','error');return}
+  downloadBlob(new Blob([JSON.stringify(sig,null,2)],{type:'application/json'}),'水表签字确认_'+sig.铺位号+'.json');
+  toast('签字文件已导出','success');
+}
+
+/* ================= 工程部内部签字（抄表员/领导/客服代表） ================= */
+function initInternalPads(){
+  if(!window.SignaturePad)return;
+  INT_ROLES.forEach(function(ro){
+    var c=document.getElementById('intCanvas-'+ro.k);
+    if(!c||state.intPads[ro.k])return;
+    var pad=new SignaturePad(c,{backgroundColor:'rgb(255,255,255)',penColor:'#0b1f3a',minWidth:1.4,maxWidth:3.2});
+    pad.addEventListener('beginStroke',function(){document.getElementById('intBox-'+ro.k).classList.add('has-sig')});
+    state.intPads[ro.k]=pad;
+  });
+}
+function intRoleTitle(k){for(var i=0;i<INT_ROLES.length;i++){if(INT_ROLES[i].k===k)return INT_ROLES[i].t}return k}
+function confirmIntSig(k){
+  var pad=state.intPads[k];
+  if(!pad||pad.isEmpty()){toast('请先手写签字','warn');return}
+  var p=state.period||newestPeriod();
+  var sigs=getIntSigs(p);
+  sigs[k]={type:'water-meter-internal-signature',version:1,账期:p,角色:k,角色名称:intRoleTitle(k),签字图像:pad.toDataURL('image/png'),签字时间:nowStr()};
+  setIntSigs(p,sigs);
+  renderIntSigStates();
+  toast(intRoleTitle(k)+'签字成功','success');
+}
+function clearIntSig(k){
+  var pad=state.intPads[k];
+  if(pad){pad.clear();document.getElementById('intBox-'+k).classList.remove('has-sig')}
+}
+function resignIntSig(k){
+  var p=state.period||newestPeriod();
+  var sigs=getIntSigs(p);
+  if(sigs[k]){delete sigs[k];setIntSigs(p,sigs)}
+  clearIntSig(k);
+  renderIntSigStates();
+}
+function renderIntSigStates(){
+  var sigs=getIntSigs(),n=0;
+  var p=state.period||newestPeriod();
+  var lbl=document.getElementById('intPeriodLabel');
+  if(lbl)lbl.textContent='签署账期：'+ymLabel(p);
+  INT_ROLES.forEach(function(ro){
+    var item=document.getElementById('intItem-'+ro.k);
+    if(!item)return;
+    var s=sigs[ro.k];
+    if(s){n++;item.classList.add('signed');document.getElementById('intImg-'+ro.k).src=s.签字图像;document.getElementById('intTime-'+ro.k).textContent='签字时间：'+s.签字时间}
+    else{item.classList.remove('signed')}
+  });
+  var cnt=document.getElementById('intSigCnt');
+  if(cnt)cnt.textContent=n+'/'+INT_ROLES.length;
+  renderPDFSummary();
+}
+
+/* ================= 工程部：签字导入 ================= */
+function importSignatureFiles(files){
+  var all=getAllSigs(),count=0,fail=0,total=files.length,done=0;
+  function finish(){
+    done++;
+    if(done<total)return;
+    setLS(LS_SIGS,all);
+    toast('成功导入 '+count+' 份签字'+(fail?'，'+fail+' 份失败':''),count?'success':'error');
+    renderAdminAll();
+  }
+  for(var i=0;i<files.length;i++){
+    (function(file){
+      var fr=new FileReader();
+      fr.onload=function(e){
+        try{
+          var sig=JSON.parse(e.target.result);
+          if(sig&&sig.铺位号&&sig.签字图像){
+            var p=normPeriodKey(sig.账期)||state.period||newestPeriod();
+            var ps=all[p]||(all[p]={});
+            ps[sig.铺位号]=sig;
+            count++;
+          }
+          else fail++;
+        }catch(err){fail++}
+        finish();
+      };
+      fr.onerror=function(){fail++;finish()};
+      fr.readAsText(file);
+    })(files[i]);
+  }
+}
+
+/* ================= 工程部：表格渲染 ================= */
+function uniqueShops(recs){
+  var shops={};
+  recs.forEach(function(r){(shops[r.铺位号]=shops[r.铺位号]||{rec:r,meters:0}).meters++});
+  return shops;
+}
+
+function renderAdminAll(){renderPeriodSel();renderFloorFilter();renderDataTable();renderSignTable();renderPDFSummary();renderIntSigStates();updateSignCnt()}
+
+function renderPeriodSel(){
+  var sel=document.getElementById('periodSel');
+  var list=periodList();
+  var cur=state.period||newestPeriod();
+  var opts='';
+  list.forEach(function(p){
+    var isCur=(p===curPeriod());
+    opts+='<option value="'+esc(p)+'"'+(p===cur?' selected':'')+'>'+esc(ymLabel(p))+(isCur?'（当前）':'')+'</option>';
+  });
+  sel.innerHTML=opts||'<option value="">--</option>';
+  document.getElementById('periodTag').textContent=(cur===curPeriod())?'当前账期':'历史账期';
+  document.getElementById('periodTag').className='badge '+(cur===curPeriod()?'ok':'warn');
+  document.getElementById('periodInfo').textContent='共 '+list.length+' 个账期 · 当前账期数据 '+getRecords(cur).length+' 条';
+}
+
+function renderFloorFilter(){
+  var recs=getRecords(),floors={};
+  recs.forEach(function(r){floors[r.楼层]=1});
+  var sel=document.getElementById('floorFilter'),cur=sel.value;
+  sel.innerHTML='<option value="">全部楼层</option>';
+  Object.keys(floors).sort(floorSort).forEach(function(f){sel.innerHTML+='<option value="'+esc(f)+'">'+esc(f)+'</option>'});
+  if(cur)sel.value=cur;
+}
+
+function renderDataTable(){
+  var recs=getRecords(),sigs=getSigs();
+  var floor=document.getElementById('floorFilter').value;
+  var kw=norm(document.getElementById('adminSearch').value).toLowerCase();
+  var list=recs.filter(function(r){
+    return (!floor||r.楼层===floor)&&(!kw||String(r.铺位号).toLowerCase().indexOf(kw)>=0||String(r.水表编码).toLowerCase().indexOf(kw)>=0||String(r.商铺名称||'').toLowerCase().indexOf(kw)>=0)
+  });
+  var shops=uniqueShops(recs);
+  var signedShops=Object.keys(shops).filter(function(k){return sigs[k]}).length;
+  document.getElementById('dataSummary').innerHTML='共 <b>'+Object.keys(shops).length+'</b> 户 / <b>'+recs.length+'</b> 只水表，已签 <b>'+signedShops+'</b> 户';
+  var html='';
+  list.forEach(function(r,i){
+    var s=sigs[r.铺位号];
+    var badge=s?'<span class="badge ok">已签字</span>':'<span class="badge no">未签字</span>';
+    html+='<tr><td>'+(i+1)+'</td><td><b>'+esc(r.铺位号)+'</b></td><td>'+esc(r.商铺名称||'--')+'</td><td>'+esc(r.楼层)+'</td><td>'+esc(r.水表编码)+'</td><td>'+esc(r.水表规格==null||r.水表规格===''?'--':r.水表规格)+'</td><td>'+fmtAuto(r.上期读数)+'</td><td>'+(r.上期用量==null?'--':fmtAuto(r.上期用量))+'</td><td>'+fmtAuto(r.本期读数)+'</td><td>'+fmtAuto(r.当月用水吨数)+'</td><td>'+fmtAuto(r.水费单价)+'</td><td>'+fmtAuto(r.当月水费金额)+'</td><td>'+badge+'</td></tr>';
+  });
+  document.getElementById('dataTbody').innerHTML=html||'<tr><td colspan="13" class="empty-state" style="padding:24px">暂无数据，请先导入 CSV</td></tr>';
+}
+
+function renderSignTable(){
+  var recs=getRecords(),sigs=getSigs();
+  var shops=uniqueShops(recs);
+  var keys=Object.keys(shops);
+  var html='';
+  keys.forEach(function(k){
+    var s=sigs[k],info=shops[k];
+    var badge=s?'<span class="badge ok">已签字</span>':'<span class="badge no">未签字</span>';
+    html+='<tr><td><b>'+esc(k)+'</b></td><td>'+esc(info.rec.商铺名称||'--')+'</td><td>'+esc(info.rec.楼层)+'</td><td>'+info.meters+'</td><td>'+badge+'</td><td>'+esc(s?s.签字时间:'--')+'</td></tr>';
+  });
+  document.getElementById('signTbody').innerHTML=html||'<tr><td colspan="6" class="empty-state" style="padding:24px">暂无数据</td></tr>';
+  var signed=keys.filter(function(k){return sigs[k]}).length;
+  document.getElementById('signSummary').innerHTML='共 <b>'+keys.length+'</b> 户（<b>'+recs.length+'</b> 只水表），已签字 <b>'+signed+'</b> 户，未签字 <b>'+(keys.length-signed)+'</b> 户';
+}
+
+function updateSignCnt(){
+  var recs=getRecords(),sigs=getSigs();
+  var shops=uniqueShops(recs);
+  var signed=Object.keys(shops).filter(function(k){return sigs[k]}).length;
+  document.getElementById('signCnt').textContent=signed+'/'+Object.keys(shops).length;
+}
+
+function renderPDFSummary(){
+  var recs=getRecords(),sigs=getSigs();
+  var floors={};
+  recs.forEach(function(r){(floors[r.楼层]=floors[r.楼层]||[]).push(r)});
+  var names=Object.keys(floors).sort(floorSort);
+  var html='',total=0,tsigned=0;
+  names.forEach(function(f){
+    var list=floors[f];
+    var shops=uniqueShops(list);
+    var sk=Object.keys(shops),sd=sk.filter(function(k){return sigs[k]}).length;
+    total+=sk.length;tsigned+=sd;
+    html+='<div class="floor-block"><div class="floor-title">'+esc(f)+' <span class="tag">'+list.length+' 只水表 · '+sk.length+' 户 · 已签 '+sd+'/'+sk.length+'</span></div></div>';
+  });
+  document.getElementById('floorList').innerHTML=html||'<div class="empty-state">暂无数据</div>';
+  var sel=document.getElementById('pdfFloorSel'),cur=sel.value;
+  var opts='<option value="">全部楼层（'+total+' 户）</option>';
+  names.forEach(function(f){
+    var list=floors[f],shops=uniqueShops(list),sk=Object.keys(shops),sd=sk.filter(function(k){return sigs[k]}).length;
+    opts+='<option value="'+esc(f)+'">'+esc(f)+'（'+sk.length+' 户 · 已签 '+sd+'/'+sk.length+'）</option>';
+  });
+  sel.innerHTML=opts;
+  var has=false;
+  for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===cur){has=true;break}}
+  if(has)sel.value=cur;
+  var psel=document.getElementById('pdfPeriodSel'),pcur=psel.value;
+  var popts='';
+  periodList().forEach(function(p){
+    popts+='<option value="'+esc(p)+'"'+(p===pcur?' selected':'')+'>'+esc(ymLabel(p))+'</option>';
+  });
+  psel.innerHTML=popts||'<option value="">--</option>';
+  if(pcur&&periodList().indexOf(pcur)>=0)psel.value=pcur;
+  else if(state.period)psel.value=state.period;
+  var isigs=getIntSigs();
+  var ist=INT_ROLES.map(function(ro){return ro.t+'：'+(isigs[ro.k]?'<b style="color:#1a7f37">已签</b>':'<span style="color:#c62828">未签</span>')}).join('　');
+  document.getElementById('pdfSummary').innerHTML='共 <b>'+total+'</b> 户，已签字 <b>'+tsigned+'</b> 户，未签字 <b>'+(total-tsigned)+'</b> 户'+((total-tsigned)>0?'（未签字商户将在 PDF 中标注）':'')+'<br>内部签字：'+ist;
+}
+
+/* ================= PDF 生成（画布渲染，支持中文，横版A4） ================= */
+function loadImage(src){return new Promise(function(res){var im=new Image();im.onload=function(){res(im)};im.onerror=function(){res(null)};im.src=src})}
+
+function generatePDF(){
+  var period=norm(document.getElementById('pdfPeriodSel').value)||state.period||newestPeriod();
+  var recs=getAllData()[period]||[],sigs=getSigs(period);
+  if(!recs.length){toast('所选账期 '+ymLabel(period)+' 暂无数据，请先导入CSV','error');return}
+  if(!window.jspdf){toast('PDF 组件加载失败，请检查网络','error');return}
+  var settings=getSettings();
+  var selFloor=norm(document.getElementById('pdfFloorSel').value);
+  var floors={};
+  recs.forEach(function(r){(floors[r.楼层]=floors[r.楼层]||[]).push(r)});
+  var floorNames=Object.keys(floors).sort(floorSort);
+  if(selFloor&&floors[selFloor])floorNames=[selFloor];
+  var intSigs=getIntSigs(period);
+  var need={};
+  INT_ROLES.forEach(function(ro){var s=intSigs[ro.k];if(s&&s.签字图像)need['__int_'+ro.k]=s.签字图像});
+  floorNames.forEach(function(f){
+    floors[f].forEach(function(r){var s=sigs[r.铺位号];if(s&&s.签字图像)need[r.铺位号]=s.签字图像});
+  });
+  Promise.all(Object.keys(need).map(function(k){return loadImage(need[k]).then(function(im){return [k,im]})})).then(function(pairs){
+    var imgCache={};
+    pairs.forEach(function(p){if(p[1])imgCache[p[0]]=p[1]});
+    buildPDF(floorNames,floors,sigs,imgCache,settings,intSigs,selFloor,period);
+  }).catch(function(){toast('PDF 生成失败，请重试','error')});
+}
+
+function buildPDF(floorNames,floors,sigs,imgCache,settings,intSigs,selFloor,period){
+  var PX=150/25.4;
+  var pageW=297,pageH=210,margin=12;
+  var cols=[
+    {t:'序号',w:9},
+    {t:'铺位号',w:18},
+    {t:'商铺名称',w:46},
+    {t:'水表井编号',w:17},
+    {t:'规格',w:12},
+    {t:'上月读数',w:16},
+    {t:'上月用量',w:15},
+    {t:'本月读数',w:16},
+    {t:'用量(吨)',w:17},
+    {t:'单价(元)',w:13},
+    {t:'金额(元)',w:19},
+    {t:'商户签字',w:47},
+    {t:'签字时间',w:28}
+  ];
+  var totalW=273,rowH=15,headH=9;
+  var pages=[];
+  function MM(v){return v*PX}
+  function colX(i){var s=0;for(var j=0;j<i;j++)s+=cols[j].w;return margin+s}
+  function fnt(sizeMM,weight){return (weight?weight+' ':'')+MM(sizeMM)+'px "Microsoft YaHei","PingFang SC",sans-serif'}
+
+  function newPage(){
+    var c=document.createElement('canvas');
+    c.width=Math.round(pageW*PX);c.height=Math.round(pageH*PX);
+    var x=c.getContext('2d');
+    x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);
+    x.fillStyle='#1d4e89';x.fillRect(0,0,c.width,MM(22));
+    x.fillStyle='#fff';x.textBaseline='middle';
+    x.font=fnt(5.2,'bold');
+    x.textAlign='center';
+    x.fillText((settings.mallName||'购物中心')+' 商户水表抄数签字确认表',MM(pageW/2),MM(8.5));
+    x.font=fnt(2.9);
+    x.textAlign='left';
+    x.fillText('抄表周期：'+(period?ymLabel(period):'____年__月'),MM(margin),MM(17.5));
+    x.textAlign='right';
+    x.fillText('生成日期：'+nowStr(),MM(pageW-margin),MM(17.5));
+    pages.push({c:c,x:x});
+    return 28;
+  }
+
+  function drawHead(x,y){
+    x.fillStyle='#1d4e89';
+    x.fillRect(MM(margin),MM(y),MM(totalW),MM(headH));
+    x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=MM(0.25);
+    x.fillStyle='#fff';x.textAlign='center';x.textBaseline='middle';
+    x.font=fnt(2.9,'bold');
+    var cx=margin;
+    cols.forEach(function(c,i){
+      if(i>0){x.beginPath();x.moveTo(MM(cx),MM(y));x.lineTo(MM(cx),MM(y+headH));x.stroke()}
+      x.fillText(c.t,MM(cx+c.w/2),MM(y+headH/2+0.2));
+      cx+=c.w;
+    });
+  }
+
+  var prepCache={};
+  function prepSig(key,im,maxW,maxH){
+    var ck=key+'@'+Math.round(maxW*10)+'x'+Math.round(maxH*10);
+    if(prepCache[ck])return prepCache[ck];
+    var s=document.createElement('canvas');s.width=im.width;s.height=im.height;
+    var sctx=s.getContext('2d');sctx.drawImage(im,0,0);
+    var d=sctx.getImageData(0,0,s.width,s.height),p=d.data;
+    var x0=s.width,y0=s.height,x1=-1,y1=-1;
+    for(var yy=0;yy<s.height;yy++)for(var xx=0;xx<s.width;xx++){
+      var ii=(yy*s.width+xx)*4;
+      var lum=0.299*p[ii]+0.587*p[ii+1]+0.114*p[ii+2];
+      if(lum<200){if(xx<x0)x0=xx;if(xx>x1)x1=xx;if(yy<y0)y0=yy;if(yy>y1)y1=yy}
+    }
+    var r=x1<0?{x:0,y:0,w:s.width,h:s.height}:null;
+    if(!r){
+      var pad=Math.max(2,Math.round(Math.min(s.width,s.height)*0.02));
+      var cx0=Math.max(0,x0-pad),cy0=Math.max(0,y0-pad);
+      var cx1=Math.min(s.width-1,x1+pad),cy1=Math.min(s.height-1,y1+pad);
+      r={x:cx0,y:cy0,w:cx1-cx0+1,h:cy1-cy0+1};
+    }
+    var w=maxW,h=w*r.h/r.w;
+    if(h>maxH){h=maxH;w=h*r.w/r.h}
+    var cv=document.createElement('canvas');
+    cv.width=Math.max(1,Math.round(MM(w)));cv.height=Math.max(1,Math.round(MM(h)));
+    var cx=cv.getContext('2d');
+    cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';
+    cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);
+    cx.drawImage(im,r.x,r.y,r.w,r.h,0,0,cv.width,cv.height);
+    var dd=cx.getImageData(0,0,cv.width,cv.height),pp=dd.data;
+    for(var j=0;j<pp.length;j+=4){
+      var lum2=0.299*pp[j]+0.587*pp[j+1]+0.114*pp[j+2];
+      if(lum2<235){
+        pp[j]=Math.round(255*Math.pow(pp[j]/255,2.5));
+        pp[j+1]=Math.round(255*Math.pow(pp[j+1]/255,2.5));
+        pp[j+2]=Math.round(255*Math.pow(pp[j+2]/255,2.5));
+      }
+    }
+    cx.putImageData(dd,0,0);
+    prepCache[ck]={cv:cv,w:w,h:h};
+    return prepCache[ck];
+  }
+
+  function drawRow(x,y,r,idx){
+    if(idx%2===1){x.fillStyle='#f4f7fb';x.fillRect(MM(margin),MM(y),MM(totalW),MM(rowH))}
+    x.strokeStyle='#b9c4d2';x.lineWidth=MM(0.22);
+    x.strokeRect(MM(margin),MM(y),MM(totalW),MM(rowH));
+    for(var i=1;i<cols.length;i++){
+      var cx=colX(i);
+      x.beginPath();x.moveTo(MM(cx),MM(y));x.lineTo(MM(cx),MM(y+rowH));x.stroke();
+    }
+    var sig=sigs[r.铺位号];
+    var spec=(r.水表规格==null||r.水表规格==='')?'--':String(r.水表规格);
+    var vals=[String(idx),r.铺位号,r.商铺名称||'--',r.水表编码||'--',spec,
+      fmtAuto(r.上期读数),(r.上期用量==null?'--':fmtAuto(r.上期用量)),fmtAuto(r.本期读数),fmtAuto(r.当月用水吨数),fmtAuto(r.水费单价),fmtAuto(r.当月水费金额)];
+    x.textAlign='center';x.textBaseline='middle';
+    x.font=fnt(2.9);
+    vals.forEach(function(v,i){
+      x.fillStyle=(i===10)?'#1d4e89':'#1f2937';
+      x.fillText(v,MM(colX(i)+cols[i].w/2),MM(y+rowH/2+0.2));
+    });
+    var im=sig&&imgCache[r.铺位号];
+    var sx=colX(11),sw=cols[11].w;
+    if(im){
+      var ps=prepSig('m_'+r.铺位号,im,sw-3,rowH-2.4);
+      x.drawImage(ps.cv,MM(sx+(sw-ps.w)/2),MM(y+(rowH-ps.h)/2),MM(ps.w),MM(ps.h));
+    }else{
+      x.fillStyle='#c62828';
+      x.fillText('未签字',MM(sx+sw/2),MM(y+rowH/2+0.2));
+    }
+    x.fillStyle=sig?'#5b6472':'#9aa3af';
+    x.font=fnt(2.3);
+    x.fillText(sig?sig.签字时间:'--',MM(colX(12)+cols[12].w/2),MM(y+rowH/2+0.2));
+  }
+
+  function drawTotalRow(x,y,recs){
+    x.fillStyle='#e8eef7';
+    x.fillRect(MM(margin),MM(y),MM(totalW),MM(rowH));
+    x.strokeStyle='#1d4e89';x.lineWidth=MM(0.35);
+    x.strokeRect(MM(margin),MM(y),MM(totalW),MM(rowH));
+    for(var i=1;i<cols.length;i++){
+      var cx=colX(i);
+      x.beginPath();x.moveTo(MM(cx),MM(y));x.lineTo(MM(cx),MM(y+rowH));x.stroke();
+    }
+    var shops={},tu=0,ta=0;
+    recs.forEach(function(r){shops[r.铺位号]=1;tu+=Number(r.当月用水吨数)||0;ta+=Number(r.当月水费金额)||0});
+    x.fillStyle='#1d4e89';x.textBaseline='middle';x.font=fnt(3,'bold');x.textAlign='center';
+    var spanW=0;for(var j=0;j<8;j++)spanW+=cols[j].w;
+    x.fillText('合计（'+recs.length+' 只水表 / '+Object.keys(shops).length+' 户）',MM(margin+spanW/2),MM(y+rowH/2+0.2));
+    x.fillText(fmtAuto(tu),MM(colX(8)+cols[8].w/2),MM(y+rowH/2+0.2));
+    x.fillText(fmtAuto(ta),MM(colX(10)+cols[10].w/2),MM(y+rowH/2+0.2));
+  }
+
+  function drawSignBar(x,y,w){
+    var gap=5,bw=(w-gap*2)/3,bh=19;
+    INT_ROLES.forEach(function(ro,i){
+      var bx=margin+i*(bw+gap);
+      x.strokeStyle='#8fa3ba';x.lineWidth=MM(0.3);
+      x.strokeRect(MM(bx),MM(y),MM(bw),MM(bh));
+      x.fillStyle='#1f2937';x.font=fnt(2.7,'bold');x.textAlign='left';x.textBaseline='top';
+      x.fillText(ro.t,MM(bx+3),MM(y+2));
+      var s=intSigs[ro.k],im=imgCache['__int_'+ro.k];
+      if(s&&im){
+        var ps=prepSig('i_'+ro.k,im,bw-42,bh-9);
+        x.drawImage(ps.cv,MM(bx+bw-3-ps.w),MM(y+3.5),MM(ps.w),MM(ps.h));
+      }else{
+        x.strokeStyle='#c3cfdd';x.lineWidth=MM(0.3);
+        x.beginPath();x.moveTo(MM(bx+bw-38),MM(y+bh-4.5));x.lineTo(MM(bx+bw-3),MM(y+bh-4.5));x.stroke();
+      }
+      x.fillStyle='#5b6472';x.font=fnt(2.3);x.textAlign='right';x.textBaseline='bottom';
+      x.fillText(s?'日期：'+String(s.签字时间).substring(0,10):'日期：____年__月__日',MM(bx+bw-3),MM(y+bh-1.5));
+    });
+  }
+
+  var y=newPage();
+  floorNames.forEach(function(f,fi){
+    if(fi>0)y=newPage();
+    var pg=pages[pages.length-1];
+    pg.x.fillStyle='#1d4e89';pg.x.textAlign='left';pg.x.textBaseline='middle';
+    pg.x.font=fnt(3.8,'bold');
+    pg.x.fillText(f+'（共 '+floors[f].length+' 只水表）',MM(margin),MM(y+2.5));
+    y+=8;
+    drawHead(pg.x,y);y+=headH;
+    floors[f].forEach(function(r,i){
+      if(y+rowH>pageH-18){y=newPage();pg=pages[pages.length-1];drawHead(pg.x,y);y+=headH}
+      drawRow(pg.x,y,r,i+1);y+=rowH;
+    });
+    if(y+rowH>pageH-18){y=newPage();pg=pages[pages.length-1];drawHead(pg.x,y);y+=headH}
+    drawTotalRow(pg.x,y,floors[f]);y+=rowH;
+    y+=4;
+    if(y+21>pageH-10){y=newPage();pg=pages[pages.length-1];drawHead(pg.x,y);y+=headH}
+    drawSignBar(pg.x,y,totalW);y+=23;
+  });
+
+  var lx=pages[pages.length-1].x;
+  lx.fillStyle='#8a94a6';lx.textAlign='left';lx.textBaseline='middle';
+  lx.font=fnt(2.4);
+  lx.fillText('（本表一式两份，工程部与商户各执一份）',MM(margin),MM(pageH-6));
+
+  pages.forEach(function(p,i){
+    p.x.fillStyle='#8a94a6';p.x.textAlign='right';p.x.textBaseline='middle';
+    p.x.font=fnt(2.5);
+    p.x.fillText('第 '+(i+1)+' 页 / 共 '+pages.length+' 页',MM(pageW-margin),MM(pageH-6));
+  });
+
+  var jsPDF=window.jspdf.jsPDF;
+  var doc=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+  pages.forEach(function(p,i){
+    if(i>0)doc.addPage('a4','landscape');
+    doc.addImage(p.c.toDataURL('image/jpeg',0.92),'JPEG',0,0,pageW,pageH);
+  });
+  doc.save('商户水表抄数签字确认表'+(period?'_'+period:'')+'.pdf');
+  toast('PDF 已生成','success');
+}
+
+/* ================= 二维码 ================= */
+function generateQR(){
+  var url=norm(document.getElementById('qrUrlInput').value);
+  if(!url){toast('请输入页面访问地址','warn');return}
+  if(!window.QRCode){toast('二维码组件加载失败，请检查网络','error');return}
+  var box=document.getElementById('qrBox');
+  box.innerHTML='';
+  new QRCode(box,{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M});
+  toast('二维码已生成','success');
+}
+
+function downloadQR(){
+  var box=document.getElementById('qrBox');
+  var el=box.querySelector('img')||box.querySelector('canvas');
+  if(!el){toast('请先生成二维码','warn');return}
+  var src=el.src||el.toDataURL('image/png');
+  var a=document.createElement('a');a.href=src;a.download='商户扫码入口二维码.png';document.body.appendChild(a);a.click();a.remove();
+}
+
+/* ================= 设置 ================= */
+function loadSettingsForm(){
+  var s=getSettings();
+  document.getElementById('setMallName').value=s.mallName||'';
+  document.getElementById('setPeriod').value=s.period||'';
+  document.getElementById('setPrice').value=s.defaultPrice;
+  document.getElementById('setPin').value=s.pin||'';
+}
+function saveSettingsForm(){
+  var s=getSettings();
+  s.mallName=norm(document.getElementById('setMallName').value);
+  s.period=norm(document.getElementById('setPeriod').value);
+  var p=parseFloat(document.getElementById('setPrice').value);
+  if(!isNaN(p)&&p>0)s.defaultPrice=p;
+  var pin=norm(document.getElementById('setPin').value);
+  if(pin)s.pin=pin;
+  saveSettings(s);
+  toast('设置已保存','success');
+}
+
+/* ================= 事件绑定 ================= */
+function bindEvents(){
+  document.getElementById('modeSwitchBtn').onclick=function(){
+    if(state.mode==='merchant')tryEnterAdmin();
+    else setMode('merchant');
+  };
+  document.getElementById('pinOkBtn').onclick=function(){
+    var v=document.getElementById('pinInput').value;
+    if(v===getSettings().pin){sessionStorage.setItem('wm_admin','1');closeModal('pinModal');setMode('admin');toast('已进入工程部管理','success')}
+    else{toast('密码错误','error');document.getElementById('pinInput').value=''}
+  };
+  document.getElementById('pinInput').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('pinOkBtn').click()});
+  document.getElementById('helpBtn').onclick=function(){openModal('helpModal')};
+
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.onclick=function(){closeModal(b.getAttribute('data-close'))};
+  });
+  document.querySelectorAll('.modal-mask').forEach(function(m){
+    m.addEventListener('click',function(e){if(e.target===m)closeModal(m.id)});
+  });
+
+  // 商户
+  document.getElementById('queryBtn').onclick=queryShop;
+  document.getElementById('shopInput').addEventListener('keydown',function(e){if(e.key==='Enter')queryShop()});
+  document.getElementById('clearSigBtn').onclick=function(){if(state.pad){state.pad.clear();document.getElementById('sigBox').classList.remove('has-sig')}};
+  document.getElementById('confirmSigBtn').onclick=confirmSignature;
+  document.getElementById('exportSigBtn').onclick=exportSignatureFile;
+  document.getElementById('resignBtn').onclick=function(){
+    document.getElementById('signedCard').classList.add('hidden');
+    document.getElementById('signCard').classList.remove('hidden');
+    if(state.pad)state.pad.clear();
+    document.getElementById('sigBox').classList.remove('has-sig');
+  };
+  document.getElementById('refreshDataBtn').onclick=function(){
+    refreshMerchantData().then(function(ok){
+      updateMerchantNotice(ok);
+      toast(ok?'数据已刷新':'未获取到最新数据，请稍后重试',ok?'success':'warn');
+    });
+  };
+  document.getElementById('mDataFileInput').addEventListener('change',function(){
+    if(this.files[0])importAnyDataFile(this.files[0]);
+    this.value='';
+  });
+
+  // 工程部 tabs
+  document.querySelectorAll('#adminTabs .tab').forEach(function(t){
+    t.onclick=function(){
+      document.querySelectorAll('#adminTabs .tab').forEach(function(x){x.classList.remove('active')});
+      t.classList.add('active');
+      var name=t.getAttribute('data-tab');
+      document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.add('hidden')});
+      document.getElementById('panel-'+name).classList.remove('hidden');
+    };
+  });
+
+  // CSV
+  document.getElementById('csvZone').onclick=function(){document.getElementById('csvInput').click()};
+  document.getElementById('csvZone').addEventListener('dragover',function(e){e.preventDefault();this.style.borderColor='var(--primary-2)'});
+  document.getElementById('csvZone').addEventListener('dragleave',function(){this.style.borderColor='#c3cfdd'});
+  document.getElementById('csvZone').addEventListener('drop',function(e){
+    e.preventDefault();this.style.borderColor='#c3cfdd';
+    var f=e.dataTransfer.files[0];if(f)readCSVFile(f);
+  });
+  document.getElementById('csvInput').addEventListener('change',function(){if(this.files[0])readCSVFile(this.files[0]);this.value=''});
+  function readCSVFile(f){
+    var fr=new FileReader();
+    fr.onload=function(e){
+      doImportCSV(decodeCSVBuffer(new Uint8Array(e.target.result)));
+    };
+    fr.readAsArrayBuffer(f);
+  }
+  document.getElementById('csvConfirmBtn').onclick=confirmCSVImport;
+  document.getElementById('templateBtn').onclick=downloadTemplate;
+  document.getElementById('exportDataBtn').onclick=exportDataFile;
+  document.getElementById('importDataBtn').onclick=function(){document.getElementById('dataInput').click()};
+  document.getElementById('dataInput').addEventListener('change',function(){if(this.files[0])importAnyDataFile(this.files[0]);this.value=''});
+  document.getElementById('clearDataBtn').onclick=function(){
+    if(!confirm('确定清空全部抄表数据与签字记录？此操作不可恢复。'))return;
+    setLS(LS_DATA,null);setLS(LS_SIGS,null);setLS(LS_INTSIGS,null);
+    toast('已清空全部数据','success');renderAdminAll();
+  };
+  document.getElementById('clearPeriodBtn').onclick=function(){
+    var p=state.period||newestPeriod();
+    if(!confirm('确定清空账期 '+ymLabel(p)+' 的抄表数据与签字记录？此操作不可恢复。'))return;
+    setData(p,null);setSigs(p,null);setIntSigs(p,null);
+    state.period=newestPeriod();
+    toast('已清空账期 '+ymLabel(p),'success');renderAdminAll();
+  };
+  document.getElementById('periodSel').onchange=function(){
+    state.period=this.value||null;
+    renderAdminAll();
+  };
+  document.getElementById('pdfPeriodSel').onchange=function(){renderPDFSummary()};
+  document.getElementById('pdfFloorSel').onchange=function(){renderPDFSummary()};
+  document.getElementById('floorFilter').onchange=renderDataTable;
+  document.getElementById('adminSearch').addEventListener('input',renderDataTable);
+
+  // 签字导入
+  document.getElementById('sigZone').onclick=function(){document.getElementById('sigInput').click()};
+  document.getElementById('sigZone').addEventListener('dragover',function(e){e.preventDefault();this.style.borderColor='var(--primary-2)'});
+  document.getElementById('sigZone').addEventListener('dragleave',function(){this.style.borderColor='#c3cfdd'});
+  document.getElementById('sigZone').addEventListener('drop',function(e){
+    e.preventDefault();this.style.borderColor='#c3cfdd';
+    var fs=e.dataTransfer.files;if(fs.length)importSignatureFiles(fs);
+  });
+  document.getElementById('sigInput').addEventListener('change',function(){if(this.files.length)importSignatureFiles(this.files);this.value=''});
+
+  // 内部签字（抄表员/领导/客服代表）
+  document.querySelectorAll('.int-confirm').forEach(function(b){b.onclick=function(){confirmIntSig(b.getAttribute('data-role'))}});
+  document.querySelectorAll('.int-clear').forEach(function(b){b.onclick=function(){clearIntSig(b.getAttribute('data-role'))}});
+  document.querySelectorAll('.int-resign').forEach(function(b){b.onclick=function(){resignIntSig(b.getAttribute('data-role'))}});
+
+  // PDF / QR / 设置
+  document.getElementById('pdfBtn').onclick=generatePDF;
+  document.getElementById('qrGenBtn').onclick=generateQR;
+  document.getElementById('qrDownloadBtn').onclick=downloadQR;
+  document.getElementById('saveSettingBtn').onclick=saveSettingsForm;
+}
+
+/* ================= 初始化 ================= */
+function init(){
+  initSignaturePad();
+  initInternalPads();
+  loadSettingsForm();
+  bindEvents();
+  if(location.protocol==='http:'||location.protocol==='https:'){document.getElementById('qrUrlInput').value=location.origin+location.pathname}
+  var url=new URLSearchParams(location.search);
+  if(url.get('admin')==='1'||url.get('admin')==='true'){tryEnterAdmin()}
+  else{
+    setMode('merchant');
+    ensureMerchantData().then(function(ok){
+      updateMerchantNotice(ok);
+      if(!ok&&getRecords().length){updateMerchantNotice(true)}
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>
