@@ -309,7 +309,7 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
         <div id="historyBody"></div>
       </div>
 
-      <div class="text-center text-muted" style="margin-top:6px">签字数据保存在本机浏览器中，请将「签字文件」交给工程部汇总。<a href="javascript:void(0)" id="refreshDataBtn" style="color:var(--primary);margin-left:6px">刷新数据</a></div>
+      <div class="text-center text-muted" style="margin-top:6px">签字数据保存在本机浏览器中，工程部可在同一设备上查看签字进度并导出确认表。<a href="javascript:void(0)" id="refreshDataBtn" style="color:var(--primary);margin-left:6px">刷新数据</a></div>
       <input type="file" id="mDataFileInput" accept=".csv,.json,text/csv,application/json" class="hidden">
     </div>
   </section>
@@ -345,6 +345,7 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           <button class="btn btn-outline btn-sm" id="exportDataBtn">导出数据文件(meter-data.json)</button>
           <button class="btn btn-outline btn-sm" id="importDataBtn">导入数据文件(CSV/JSON)</button>
           <input type="file" id="dataInput" accept=".csv,.json,text/csv,application/json" class="hidden">
+          <button class="btn btn-outline btn-sm" id="adminLoadPresetBtn">加载预置数据（样例）</button>
           <span class="spacer"></span>
           <button class="btn btn-outline btn-sm" id="clearPeriodBtn">清空当前账期</button>
           <button class="btn btn-danger btn-sm" id="clearDataBtn">清空全部数据</button>
@@ -373,14 +374,6 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
 
     <!-- 签字汇总 -->
     <div class="tab-panel hidden" id="panel-sign">
-      <div class="card">
-        <div class="card-title"><span class="bar"></span>导入商户签字文件<span class="sub">支持多选，来自商户手机导出的 .json 文件</span></div>
-        <div class="upload-zone" id="sigZone">
-          <div class="big">点击选择商户签字文件（可多选）</div>
-          <div class="small">商户在手机上签字后点击「导出签字文件」，将文件通过微信/邮件等方式发送给工程部，在此导入合并</div>
-          <input type="file" id="sigInput" accept=".json,application/json" multiple>
-        </div>
-      </div>
       <div class="card">
         <div class="card-title"><span class="bar"></span>签字进度</div>
         <div class="summary-line" id="signSummary"></div>
@@ -508,10 +501,10 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
         <div class="card-title"><span class="bar"></span>关于本系统</div>
         <div class="help-list">
           <div class="step"><div class="t">使用流程</div>
-            1. 工程部在「设置」中选择当前账期 → 2. 导入 CSV 抄表数据（可含「月份」列，一次导入多个月） → 3. 导出 <code>meter-data.json</code> 并部署 → 4. 商户扫码输入商铺号核对<b>最新账期</b>并手写签字（可查看历史账期） → 5. 商户导出签字文件发给工程部 → 6. 工程部导入签字文件按账期汇总 → 7. 内部三方（抄表员/领导/客服代表）按账期签署 → 8. 按<b>账期+楼层</b>生成 PDF 签字确认表。
+            1. 工程部在「设置」中选择当前账期 → 2. 导入 CSV 抄表数据（可含「月份」列，一次导入多个月） → 3. 导出 <code>meter-data.json</code> 并部署 → 4. 商户扫码输入商铺号核对<b>最新账期</b>并手写签字（可查看历史账期） → 5. 内部三方（抄表员/领导/客服代表）按账期签署 → 6. 按<b>账期+楼层</b>生成 PDF 签字确认表。
           </div>
           <div class="step"><div class="t">数据说明</div>
-            抄表与签字均以账期（月）为单位管理：各账期数据、商户签字、内部签字相互独立，切换账期即可浏览历史记录。所有数据保存在各设备浏览器本地（localStorage），不上传服务器；多设备通过「签字文件」手动合并。同一商铺号有多只水表时，商户一次签字即确认该商铺全部水表。
+            抄表与签字均以账期（月）为单位管理：各账期数据、商户签字、内部签字相互独立，切换账期即可浏览历史记录。所有数据保存在浏览器本地（localStorage），不上传服务器；商户须在本站内签字，工程部可在同一设备上查看签字进度并导出确认表。同一商铺号有多只水表时，商户一次签字即确认该商铺全部水表。
           </div>
         </div>
       </div>
@@ -567,10 +560,10 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           点击「导出数据文件」得到 <code>meter-data.json</code>（包含全部账期），与页面一起部署到 GitHub Pages。商户扫码后页面会自动加载该文件。「导入数据文件」同时支持 CSV 与 <code>meter-data.json</code>（自动识别），可用于恢复备份的数据。
         </div>
         <div class="step"><div class="t">三、商户：扫码核对并签字</div>
-          商户扫码打开页面 → 输入商铺号（也可输商铺名称）→ 核对<b>最新账期</b>该商铺全部水表的读数、用量、单价、金额 → 手写签字确认 → 点击「导出签字文件」将文件发给工程部。页面上方可查看该商铺<b>历史账期</b>记录（只读）。
+          商户扫码打开页面 → 输入商铺号（也可输商铺名称）→ 核对<b>最新账期</b>该商铺全部水表的读数、用量、单价、金额 → 手写签字确认。页面上方可查看该商铺<b>历史账期</b>记录（只读）。
         </div>
-        <div class="step"><div class="t">四、工程部：按账期汇总签字</div>
-          切换到对应账期，在「签字汇总」中导入该账期各商户的签字文件，查看签字进度；再由抄表员、工程部领导、客服代表在「内部签字」中完成该账期签署。
+        <div class="step"><div class="t">四、工程部：按账期查看签字进度</div>
+          切换到对应账期，在「签字汇总」中查看各商户签字进度；再由抄表员、工程部领导、客服代表在「内部签字」中完成该账期签署。
         </div>
         <div class="step"><div class="t">五、工程部：按账期与楼层导出 PDF</div>
           在「PDF导出」中选择账期与楼层，生成横版 A4 签字确认表，含电子签字图像与内部三方签字栏。
@@ -1396,6 +1389,7 @@ function loadPresetData(){
   setLS(LS_DATA,PRESET_DATA);
   state.mPeriod=null;
   updateMerchantNotice(true);
+  renderAdminAll();
   toast('预置数据加载成功','success');
   document.getElementById('shopInput').focus();
 }
@@ -1573,38 +1567,6 @@ function renderIntSigStates(){
   var cnt=document.getElementById('intSigCnt');
   if(cnt)cnt.textContent=n+'/'+INT_ROLES.length;
   renderPDFSummary();
-}
-
-/* ================= 工程部：签字导入 ================= */
-function importSignatureFiles(files){
-  var all=getAllSigs(),count=0,fail=0,total=files.length,done=0;
-  function finish(){
-    done++;
-    if(done<total)return;
-    setLS(LS_SIGS,all);
-    toast('成功导入 '+count+' 份签字'+(fail?'，'+fail+' 份失败':''),count?'success':'error');
-    renderAdminAll();
-  }
-  for(var i=0;i<files.length;i++){
-    (function(file){
-      var fr=new FileReader();
-      fr.onload=function(e){
-        try{
-          var sig=JSON.parse(e.target.result);
-          if(sig&&sig.铺位号&&sig.签字图像){
-            var p=normPeriodKey(sig.账期)||state.period||newestPeriod();
-            var ps=all[p]||(all[p]={});
-            ps[sig.铺位号]=sig;
-            count++;
-          }
-          else fail++;
-        }catch(err){fail++}
-        finish();
-      };
-      fr.onerror=function(){fail++;finish()};
-      fr.readAsText(file);
-    })(files[i]);
-  }
 }
 
 /* ================= 工程部：表格渲染 ================= */
@@ -2030,6 +1992,7 @@ function bindEvents(){
   document.getElementById('queryBtn').onclick=queryShop;
   document.getElementById('shopInput').addEventListener('keydown',function(e){if(e.key==='Enter')queryShop()});
   document.getElementById('loadPresetBtn').onclick=loadPresetData;
+  document.getElementById('adminLoadPresetBtn').onclick=loadPresetData;
   document.getElementById('clearSigBtn').onclick=function(){if(state.pad){state.pad.clear();document.getElementById('sigBox').classList.remove('has-sig')}};
   document.getElementById('confirmSigBtn').onclick=confirmSignature;
   document.getElementById('exportSigBtn').onclick=exportSignatureFile;
@@ -2102,16 +2065,6 @@ function bindEvents(){
   document.getElementById('pdfFloorSel').onchange=function(){renderPDFSummary()};
   document.getElementById('floorFilter').onchange=renderDataTable;
   document.getElementById('adminSearch').addEventListener('input',renderDataTable);
-
-  // 签字导入
-  document.getElementById('sigZone').onclick=function(){document.getElementById('sigInput').click()};
-  document.getElementById('sigZone').addEventListener('dragover',function(e){e.preventDefault();this.style.borderColor='var(--primary-2)'});
-  document.getElementById('sigZone').addEventListener('dragleave',function(){this.style.borderColor='#c3cfdd'});
-  document.getElementById('sigZone').addEventListener('drop',function(e){
-    e.preventDefault();this.style.borderColor='#c3cfdd';
-    var fs=e.dataTransfer.files;if(fs.length)importSignatureFiles(fs);
-  });
-  document.getElementById('sigInput').addEventListener('change',function(){if(this.files.length)importSignatureFiles(this.files);this.value=''});
 
   // 内部签字（抄表员/领导/客服代表）
   document.querySelectorAll('.int-confirm').forEach(function(b){b.onclick=function(){confirmIntSig(b.getAttribute('data-role'))}});
