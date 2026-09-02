@@ -466,7 +466,7 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
         <div class="qr-box">
           <div class="qr-canvas-box">
             <div id="qrBox" style="width:220px;height:220px;display:flex;align-items:center;justify-content:center"></div>
-            <div class="qr-tip">商户扫码后输入商铺号查询并签字</div>
+            <div class="qr-tip">商户扫码后输入商铺号查询并签字；若为商铺专属二维码则直接进入该商铺数据</div>
             <button class="btn btn-outline btn-sm" id="qrDownloadBtn" style="margin-top:10px;width:100%">下载二维码图片</button>
           </div>
           <div class="qr-right">
@@ -474,7 +474,11 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
               <label>页面访问地址（GitHub Pages 部署后的 URL）</label>
               <input class="input" id="qrUrlInput" placeholder="https://用户名.github.io/仓库名/">
             </div>
-            <div class="text-muted" style="margin-bottom:14px">二维码指向该地址。请将部署后的正式 URL 填入，确保商户扫码可访问。</div>
+            <div class="field">
+              <label>商铺号（可选，生成该商铺专属二维码）</label>
+              <input class="input" id="qrShopInput" placeholder="如 L8-001，留空则生成通用入口二维码">
+            </div>
+            <div class="text-muted" style="margin-bottom:14px">填写商铺号后，二维码地址自动带上 <code>?shop=商铺号</code>，商户扫码后直接进入该商铺数据；留空则生成通用入口二维码。</div>
             <button class="btn btn-primary" id="qrGenBtn">生成二维码</button>
             <div class="notice" style="margin-top:14px">商户扫码打开页面后，系统会自动加载同目录下的 <code>meter-data.json</code> 数据文件。请在「数据管理」中导入 CSV 后点击「导出数据文件」，将生成的 <code>meter-data.json</code> 与页面一起部署。</div>
           </div>
@@ -1956,13 +1960,20 @@ function buildPDF(floorNames,floors,sigs,imgCache,settings,intSigs,selFloor,peri
 }
 
 /* ================= 二维码 ================= */
+function buildQRUrl(){
+  var base=norm(document.getElementById('qrUrlInput').value);
+  var shop=norm(document.getElementById('qrShopInput').value);
+  if(!base)return '';
+  if(shop)return base+(base.indexOf('?')>=0?'&':'?')+'shop='+encodeURIComponent(shop);
+  return base;
+}
 function renderQR(url){
   var box=document.getElementById('qrBox');
   box.innerHTML='';
   new QRCode(box,{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M});
 }
 function generateQR(){
-  var url=norm(document.getElementById('qrUrlInput').value);
+  var url=buildQRUrl();
   if(!url){toast('请输入页面访问地址','warn');return}
   if(!window.QRCode){toast('二维码组件加载失败，请检查网络','error');return}
   renderQR(url);
@@ -1974,7 +1985,8 @@ function downloadQR(){
   var el=box.querySelector('img')||box.querySelector('canvas');
   if(!el){toast('请先生成二维码','warn');return}
   var src=el.src||el.toDataURL('image/png');
-  var a=document.createElement('a');a.href=src;a.download='商户扫码入口二维码.png';document.body.appendChild(a);a.click();a.remove();
+  var shop=norm(document.getElementById('qrShopInput').value);
+  var a=document.createElement('a');a.href=src;a.download=shop?('商户扫码入口二维码_'+shop+'.png'):'商户扫码入口二维码.png';document.body.appendChild(a);a.click();a.remove();
 }
 
 /* ================= 设置 ================= */
@@ -2114,6 +2126,9 @@ function bindEvents(){
   document.getElementById('pdfBtn').onclick=generatePDF;
   document.getElementById('qrGenBtn').onclick=generateQR;
   document.getElementById('qrDownloadBtn').onclick=downloadQR;
+  document.getElementById('qrShopInput').addEventListener('input',function(){
+    if(window.QRCode&&document.getElementById('qrUrlInput').value)generateQR();
+  });
   document.getElementById('saveSettingBtn').onclick=saveSettingsForm;
 }
 
