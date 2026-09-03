@@ -369,14 +369,11 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           <input type="file" id="csvInput" accept=".csv,text/csv">
         </div>
         <div class="toolbar toolbar-grid" style="margin-top:14px">
-          <button class="btn btn-outline btn-sm" id="templateBtn">下载CSV模板</button>
-          <button class="btn btn-outline btn-sm" id="exportDataBtn">导出数据文件(meter-data.json)</button>
-          <button class="btn btn-outline btn-sm" id="importDataBtn">导入数据文件(CSV/JSON)</button>
+          <button class="btn btn-outline btn-sm" id="templateBtn" title="下载 CSV 模板">导出模板</button>
+          <button class="btn btn-outline btn-sm" id="importDataBtn" title="导入 CSV 或数据文件">导入数据</button>
+          <button class="btn btn-outline btn-sm" id="adminLoadPresetBtn" title="载入预置样例数据用于预览">预览</button>
+          <button class="btn btn-danger btn-sm" id="clearPeriodBtn" title="清空当前账期数据">清空</button>
           <input type="file" id="dataInput" accept=".csv,.json,text/csv,application/json" class="hidden">
-          <button class="btn btn-outline btn-sm" id="adminLoadPresetBtn">加载预置数据（样例）</button>
-          <span class="spacer"></span>
-          <button class="btn btn-outline btn-sm" id="clearPeriodBtn">清空当前账期</button>
-          <button class="btn btn-danger btn-sm" id="clearDataBtn">清空全部数据</button>
         </div>
       </div>
       <div class="card">
@@ -497,7 +494,7 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
             </div>
             <div class="text-muted" style="margin-bottom:14px">二维码指向 <code>https://gcnaat.github.io/meters/</code>；填写商铺号后自动带上 <code>?shop=商铺号</code>，商户扫码后直接进入该商铺数据；留空则生成通用入口二维码。</div>
             <button class="btn btn-primary" id="qrGenBtn">生成二维码</button>
-            <div class="notice" style="margin-top:14px">商户扫码打开页面后，系统会自动加载同目录下的 <code>meter-data.json</code> 数据文件。请在「数据管理」中导入 CSV 后点击「导出数据文件」，将生成的 <code>meter-data.json</code> 与页面一起部署。</div>
+            <div class="notice" style="margin-top:14px">商户扫码打开页面后，系统会自动加载同目录下的 <code>meter-data.json</code> 数据文件。请在「数据管理」中导入 CSV 后，到「设置」页点击「导出数据文件」，将生成的 <code>meter-data.json</code> 与页面一起部署。</div>
           </div>
         </div>
       </div>
@@ -524,6 +521,11 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           <input class="input" id="setPin" type="text" placeholder="默认 123456">
         </div>
         <button class="btn btn-primary" id="saveSettingBtn">保存设置</button>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="bar"></span>数据发布</div>
+        <div class="text-muted" style="margin-bottom:12px">将全部账期的抄表数据与签字记录导出为 <code>meter-data.json</code>，与页面一起部署后，商户扫码即可访问最新数据。</div>
+        <button class="btn btn-outline" id="exportDataBtn">导出数据文件</button>
       </div>
       <div class="card">
         <div class="card-title"><span class="bar"></span>关于本系统</div>
@@ -585,7 +587,7 @@ footer{text-align:center;color:var(--text-3);font-size:12px;padding:20px 0 40px}
           进入「工程部入口」（默认密码 <code>123456</code>，可在设置中修改），先在「设置」中选择<b>当前账期</b>，再到「数据管理」导入 CSV 文件。表头：<code>序号, 月份, 商铺号, 商铺名称, 水表井编号, 水表规格(DN), 上月读数(m³), 上月用量(吨), 本月读数(m³), 用量(吨), 单价(元), 金额(元)</code>。「序号」「客户签字」列自动忽略；楼层按铺位号自动识别（如 L8-001 → 8F、B1-301 → B1），也可增加「楼层」列指定；「月份」列（如 2026-09）可将数据导入指定账期，未填时归入当前账期。CSV 中已填写的用量、金额将直接采用，未填写时自动按「本月读数−上月读数」「用量×单价」计算。顶部账期选择器可切换浏览各月历史数据。
         </div>
         <div class="step"><div class="t">二、工程部：发布数据文件</div>
-          点击「导出数据文件」得到 <code>meter-data.json</code>（包含全部账期），与页面一起部署到 GitHub Pages。商户扫码后页面会自动加载该文件。「导入数据文件」同时支持 CSV 与 <code>meter-data.json</code>（自动识别），可用于恢复备份的数据。
+          在「设置」页点击「导出数据文件」得到 <code>meter-data.json</code>（包含全部账期），与页面一起部署到 GitHub Pages。商户扫码后页面会自动加载该文件。「导入数据文件」同时支持 CSV 与 <code>meter-data.json</code>（自动识别），可用于恢复备份的数据。
         </div>
         <div class="step"><div class="t">三、商户：扫码核对并签字</div>
           商户扫码打开页面 → 输入商铺号（也可输商铺名称）→ 核对<b>最新账期</b>该商铺全部水表的读数、用量、单价、金额 → 手写签字确认。页面上方可查看该商铺<b>历史账期</b>记录（只读）。
@@ -2073,11 +2075,6 @@ function bindEvents(){
   document.getElementById('exportDataBtn').onclick=exportDataFile;
   document.getElementById('importDataBtn').onclick=function(){document.getElementById('dataInput').click()};
   document.getElementById('dataInput').addEventListener('change',function(){if(this.files[0])importAnyDataFile(this.files[0]);this.value=''});
-  document.getElementById('clearDataBtn').onclick=function(){
-    if(!confirm('确定清空全部抄表数据与签字记录？此操作不可恢复。'))return;
-    setLS(LS_DATA,null);setLS(LS_SIGS,null);setLS(LS_INTSIGS,null);
-    toast('已清空全部数据','success');renderAdminAll();
-  };
   document.getElementById('clearPeriodBtn').onclick=function(){
     var p=state.period||newestPeriod();
     if(!confirm('确定清空账期 '+ymLabel(p)+' 的抄表数据与签字记录？此操作不可恢复。'))return;
